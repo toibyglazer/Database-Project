@@ -80,7 +80,10 @@ The database is organized into several logical sections, each consisting of rela
 
 This structured database helps streamline bookstore operations, improving inventory management, customer service, and business intelligence capabilities. The system provides a comprehensive solution for modern bookstores seeking to optimize their operations and enhance the customer experience.
 ### ERD (Entity-Relationship Diagram)
-
+![ERD Diagram](Part_One/ERD_DSD_Files/ERD_diagram.png)
+### DSD (Data Structure Diagram)
+![DSD Diagram](Part_One/ERD_DSD_Files/DSD_diagram.png)
+### SQL Scripts
 
 
 
