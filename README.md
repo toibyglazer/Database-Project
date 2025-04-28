@@ -85,10 +85,10 @@ This structured database helps streamline bookstore operations, improving invent
 ![DSD Diagram](Part_One/ERD_DSD_Files/DSD_diagram.png)
 ### SQL Scripts
 
-- [Create Tables Script](Part_One/SQL_Script_Files/create_tables.sql) — Creates the database tables.
-- [Insert Data Script](Part_One/SQL_Script_Files/insert_tables.sql) — Inserts initial data into the tables.
-- [Drop Tables Script](Part_One/SQL_Script_Files/drop_tables.sql) — Deletes the tables from the database.
-- [Select All Tables Script](Part_One/SQL_Script_Files/selectAll_tables.sql) — Retrieves all data from the tables.
+- [Create Tables Script](Part_One/SQL_Script_Files/create_tables.sql)  Creates the database tables.
+- [Insert Data Script](Part_One/SQL_Script_Files/insert_tables.sql)  Inserts initial data into the tables.
+- [Drop Tables Script](Part_One/SQL_Script_Files/drop_tables.sql)  Deletes the tables from the database.
+- [Select All Tables Script](Part_One/SQL_Script_Files/selectAll_tables.sql)  Retrieves all data from the tables.
 
 
 
