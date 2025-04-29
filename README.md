@@ -134,7 +134,6 @@ Below are the screenshots of the data for **Author**, **Person**, and **ShelfLoc
   <img src="Part_One/Screenshots/Person/Image3.png" width="800" />
   <img src="Part_One/Screenshots/Person/Image4.png" width="800" />
   <img src="Part_One/Screenshots/Person/Image5.png" width="800" />
-  <img src="Part_One/Screenshots/Person/Image6.png" width="800" />
   <img src="Part_One/Screenshots/Person/Image7.png" width="800" />
 </div>
 
@@ -159,4 +158,4 @@ Below are the screenshots of the data for **Author**, **Person**, and **ShelfLoc
    <img src="Part_One/Screenshots/Backup/Image15.png" width="45%" />
 </p>
 
-
+## Part Two: Integration
