@@ -8,6 +8,7 @@ Database Project By Toiby Glazer 326484524 | Semester B, Spring 2025
   - [DSD (Data Structure Diagram)](#dsd-data-structure-diagram)
   - [SQL Scripts](#sql-scripts)
   - [Data](#data)
+  - [Screenshots of the Dataset](screenshots-of-the-dataset)
   - [Backup](#backup)
 - [Part Two: Integration](#part-two-integration)
 ## Part One: Design and Build the Database
@@ -93,14 +94,14 @@ This structured database helps streamline bookstore operations, improving invent
 
 #### **First tool** using [Mockaroo](https://mockaroo.com/) to create CSV files.
 
-  - Inserting data into the **Author** (Scope: 1 - 400) table [View Author.csv](Part_One/Mockaroo/Author.csv)  
+  - Inserting data into the **Author** (Scope: 1 - 400) table [View Author.csv](Part_One/Mockaroo/Author.csv)
 
   - Inserting data into the **Person** (Scope 1 - 800) table [View Person.csv](Part_One/Mockaroo/Person.csv) 
 #### **Second tool** using [generatedata.com](https://generatedata.com/) to create CSV files.
 
   - Inserting data into the **ShelfLocation** (Scope 1 - 400) table [View Author.csv](Part_One/GenerateData/ShelfLocation.csv) 
 #### **Third tool** using Python to create CSV files.
-
+I developed a Python script that automatically generates CSV files with predefined values and constraints. The script streamlines the process by creating structured data based on specific criteria, making it easier to manage and analyze large datasets.
   - Inserting data into the **GenreTypes** (Scope 1 - 50) table [View GenreTypes.csv](Part_One/PythonScripts/GenreTypes/GenreTypes.csv) 
     **Code view**  [View GenreTypes.py](Part_One/PythonScripts/GenreTypes/CreateGenreTypes.py)
 
@@ -118,5 +119,29 @@ This structured database helps streamline bookstore operations, improving invent
   - Inserting data into the **Orders** (Scope 1 - 800) table [View Orders.csv](Part_One/PythonScripts/Orders/Orders.csv)   **Code view**  [View Orders.py](Part_One/PythonScripts/Orders/CreateOrders.py)
 
   - Inserting data into the **BookToOrder** (Scope 1 - 900) table [View BookToOrder.csv](Part_One/PythonScripts/BookToOrder/BookToOrder.csv)   **Code view**  [View BookToOrder.py](Part_One/PythonScripts/BookToOrder/CreateBookToOrder.py)
+### Screenshots of the Dataset
+
+Below are the screenshots of the data for **Author**, **Person**, and **ShelfLocation** tables that I uploaded to the project. I created the values using the **GenerateData** and **Mockaroo** tools. For all the other tables, I created values using Python code.
+
+**Author Table**:  
+<div align="center">
+  <img src="Part_One/Screenshots/Author/Image1.png" width="800" />
+  <img src="Part_One/Screenshots/Author/Image2.png" width="800" />
+</div>
+
+**Person Table**:  
+<div align="center">
+  <img src="Part_One/Screenshots/Person/Image3.png" width="800" />
+  <img src="Part_One/Screenshots/Person/Image4.png" width="800" />
+  <img src="Part_One/Screenshots/Person/Image5.png" width="800" />
+  <img src="Part_One/Screenshots/Person/Image6.png" width="800" />
+  <img src="Part_One/Screenshots/Person/Image7.png" width="800" />
+</div>
+
+**ShelfLocation Table**:  
+<div align="center">
+  <img src="Part_One/Screenshots/ShelfLocation/Image8.png" width="800" />
+  <img src="Part_One/Screenshots/ShelfLocation/Image9.png" width="800" />
+</div>
 
 
