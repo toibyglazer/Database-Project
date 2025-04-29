@@ -89,7 +89,16 @@ This structured database helps streamline bookstore operations, improving invent
 - [Insert Data Script](Part_One/SQL_Script_Files/insert_tables.sql)  Inserts initial data into the tables.
 - [Drop Tables Script](Part_One/SQL_Script_Files/drop_tables.sql)  Deletes the tables from the database.
 - [Select All Tables Script](Part_One/SQL_Script_Files/selectAll_tables.sql)  Retrieves all data from the tables.
+### Data
 
+## First tool: using [Mockaroo](https://mockaroo.com/) to create CSV files.
+
+- Inserting data into the **Author** table [View Author.csv](Part_One/Mockaroo/Author.csv)
+  Scope: 1–400
+
+- Inserting data into the **Person** table [View Person.csv](Part_One/Mockaroo/Person.csv)
+  Scope: 1–800 
+ 
 
 
 
