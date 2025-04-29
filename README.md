@@ -10,6 +10,7 @@ Database Project By Toiby Glazer 326484524 | Semester B, Spring 2025
   - [Data](#data)
   - [Screenshots of the Dataset](#screenshots-of-the-dataset)
   - [Backup](#backup)
+  - [Data Recovery Test](#data-recovery-test)
 - [Part Two: Integration](#part-two-integration)
 ## Part One: Design and Build the Database
 ### Introduction
@@ -145,6 +146,7 @@ Below are the screenshots of the data for **Author**, **Person**, and **ShelfLoc
 </div>
 
 ### Backup
-**Data recovery file** [View BackupFile.backup](Part_One/Backup/backup_2025_04_29.backup)
+**Data backup file** [View BackupFile.backup](Part_One/Backup/backup_2025_04_29.backup)
+### Data Recovery Test
 
 
