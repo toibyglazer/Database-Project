@@ -147,6 +147,16 @@ Below are the screenshots of the data for **Author**, **Person**, and **ShelfLoc
 
 ### Backup
 **Data backup file** [View BackupFile.backup](Part_One/Backup/backup_2025_04_29.backup)
-### Data Recovery Test
+**Recovery Test**
+To check that the data backup file indeed contains all the required tables and files that were in the original database, I created a new database **Restore Database** to check that everything was indeed backed up and restored as required.
+<p float="left">
+  <img src="Part_One/Screenshots/Backup/Image11.png" width="45%" />
+   <img src="Part_One/Screenshots/Backup/Image13.png" width="45%" />
+</p>
+<p float="left">
+ 
+  <img src="Part_One/Screenshots/Backup/Image14.png" width="45%" />
+   <img src="Part_One/Screenshots/Backup/Image15.png" width="45%" />
+</p>
 
 
