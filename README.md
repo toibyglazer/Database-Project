@@ -8,7 +8,7 @@ Database Project By Toiby Glazer 326484524 | Semester B, Spring 2025
   - [DSD (Data Structure Diagram)](#dsd-data-structure-diagram)
   - [SQL Scripts](#sql-scripts)
   - [Data](#data)
-  - [Screenshots of the Dataset](screenshots-of-the-dataset)
+  - [Screenshots of the Dataset](#screenshots-of-the-dataset)
   - [Backup](#backup)
 - [Part Two: Integration](#part-two-integration)
 ## Part One: Design and Build the Database
