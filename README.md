@@ -10,7 +10,14 @@ Database Project By Toiby Glazer 326484524 | Semester B, Spring 2025
   - [Data](#data)
   - [Screenshots of the Dataset](#screenshots-of-the-dataset)
   - [Backup](#backup)
-- [Part Two: Integration](#part-two-integration)
+- [Part Two: Queries and Constraints](#part-two-queries-and-constraints)  
+  - [Queries](#queries)  
+    - [Select Queries](#selectqueries)   
+    - [Delete Queries](#deletequeries)  
+    - [Update Queries](#updatequeries)  
+  - [Constraints](#constraints)  
+  - [Rollback and Commit](#rollback-and-commit)  
+  - [Backup Part-Two](#backup-part-two)  
 ## Part One: Design and Build the Database
 ### Introduction
 The **Bookstore Management System Database** is designed to efficiently manage information related to books, customers, librarians, authors, and sales transactions. This comprehensive system ensures smooth organization and tracking of essential details such as inventory management, customer memberships, book categorization, and sales history.
@@ -157,5 +164,304 @@ Below are the screenshots of the data for **Author**, **Person**, and **ShelfLoc
   <img src="Part_One/Screenshots/Backup/Image14.png" width="45%" />
    <img src="Part_One/Screenshots/Backup/Image15.png" width="45%" />
 </p>
+
+## Part Two: Queries and Constraints
+
+In this section, we explore the implementation of various SQL queries, constraints, and database management operations to enhance the functionality and data integrity of our Bookstore Management System.
+
+### Queries
+
+The queries section demonstrates the practical application of SQL to extract meaningful information from our database, modify data, and maintain database integrity. These operations are essential for day-to-day bookstore management and business intelligence.
+
+#### Select Queries
+
+This section contains SELECT queries that retrieve specific information from the database to support various business needs and decision-making processes.
+
+**1. Select Author Books** [View SQL](Part_Two/Queries/selectQueries/TheQueries_SQL/select_author_books.sql)
+   
+This query retrieves all books written by a specific author, providing a comprehensive view of an author's work available in the store.
+   
+   ![Author Books Query](Part_Two/Screenshots/selectQueries/select_author_books.png)
+
+**2. Select Books by Age Group** [View SQL](Part_Two/Queries/selectQueries/TheQueries_SQL/select_books_by_age_group.sql)
+   
+   This query categorizes books by recommended age groups, allowing for targeted marketing and display arrangements based on customer demographics.
+   
+   ![Books by Age Group Query](Part_Two/Screenshots/selectQueries/select_books_by_age_group.png)
+
+**3. Select Books by Genre** [View SQL](Part_Two/Queries/selectQueries/TheQueries_SQL/select_books_by_genre.sql)
+   
+   This query lists books by genre, facilitating genre-based browsing and inventory management.
+   
+   ![Books by Genre Query](Part_Two/Screenshots/selectQueries/select_books_by_genre.png)
+
+**4. Select Books by Language** [View SQL](Part_Two/Queries/selectQueries/TheQueries_SQL/select_books_by_language.sql)
+   
+   This query identifies books available in specific languages, supporting multilingual customer needs and inventory diversity tracking.
+   
+   ![Books by Language Query](Part_Two/Screenshots/selectQueries/select_books_by_language.png)
+
+**5. Select Books by Location** [View SQL](Part_Two/Queries/selectQueries/TheQueries_SQL/select_books_by_location.sql)
+   
+   This query finds books based on their physical location in the store, aiding staff in quickly locating items for customers.
+   
+   ![Books by Location Query](Part_Two/Screenshots/selectQueries/select_books_by_location.png)
+
+**6. Select Customer Order History** [View SQL](Part_Two/Queries/selectQueries/TheQueries_SQL/select_customer_order_history.sql)
+   
+   This query retrieves a customer's complete order history, supporting customer service and personalized marketing efforts.
+   
+   ![Customer Order History Query](Part_Two/Screenshots/selectQueries/select_customer_order_history.png)
+
+**7. Select Low Stock Books** [View SQL](Part_Two/Queries/selectQueries/TheQueries_SQL/select_low_stock_books.sql)
+   
+   This query identifies books with low inventory levels, helping prevent stockouts and maintain optimal inventory levels.
+   
+   ![Low Stock Books Query](Part_Two/Screenshots/selectQueries/select_low_stock_books.png)
+
+**8. Select Monthly Sales Statistics** [View SQL](Part_Two/Queries/selectQueries/TheQueries_SQL/select_monthly_sales_stats.sql)
+   
+   This query analyzes sales performance by month, providing valuable insights for seasonal planning and performance evaluation.
+   
+   ![Monthly Sales Statistics Query](Part_Two/Screenshots/selectQueries/select_monthly_sales_stats.png)
+
+**9. Select Popular Books** [View SQL](Part_Two/Queries/selectQueries/TheQueries_SQL/select_popular_books.sql)
+    
+    This query identifies the most frequently purchased books, informing restocking decisions and promotional strategies.
+    
+    ![Popular Books Query](Part_Two/Screenshots/selectQueries/select_popular_books.png)
+
+**10. Select Top Club Members** [View SQL](Part_Two/Queries/selectQueries/TheQueries_SQL/select_top_club_members.sql)
+    
+    This query identifies the most active club members based on purchase history, supporting loyalty program management and targeted marketing.
+    
+    ![Top Club Members Query](Part_Two/Screenshots/selectQueries/select_top_club_members.png)
+
+**11. Select Top Librarians** [View SQL](Part_Two/Queries/selectQueries/TheQueries_SQL/select_top_librarians.sql)
+    
+    This query identifies the most productive librarians based on sales performance, aiding in staff evaluation and incentive programs.
+    
+    ![Top Librarians Query](Part_Two/Screenshots/selectQueries/select_top_librarians.png)
+
+**12. Select Top Non-Members** [View SQL](Part_Two/Queries/selectQueries/TheQueries_SQL/select_top_non_members.sql)
+    
+    This query identifies frequent non-member customers who might benefit from membership, supporting membership conversion strategies.
+    
+    ![Top Non-Members Query](Part_Two/Screenshots/selectQueries/select_top_non_members.png)
+
+##### Query Execution Results in CSV Files
+
+The following CSV files contain the results of executing the SELECT queries described above:
+
+1. [Author Books Results](Part_Two/Queries/selectQueries/RunResults_CSV/select_author_books.csv) - Lists all books by specific authors
+2. [Books by Age Group Results](Part_Two/Queries/selectQueries/RunResults_CSV/select_books_by_age_group.csv) - Shows books categorized by recommended age groups
+3. [Books by Genre Results](Part_Two/Queries/selectQueries/RunResults_CSV/select_books_by_genre.csv) - Presents books organized by literary genres
+4. [Books by Language Results](Part_Two/Queries/selectQueries/RunResults_CSV/select_books_by_language.csv) - Displays books available in various languages
+5. [Books by Location Results](Part_Two/Queries/selectQueries/RunResults_CSV/select_books_by_location.csv) - Shows books organized by their physical location in the store
+6. [Customer Order History Results](Part_Two/Queries/selectQueries/RunResults_CSV/select_customer_order_history.csv) - Contains detailed purchase history for individual customers
+7. [Low Stock Books Results](Part_Two/Queries/selectQueries/RunResults_CSV/select_low_stock_books.csv) - Lists books with inventory levels below the threshold
+8. [Monthly Sales Statistics Results](Part_Two/Queries/selectQueries/RunResults_CSV/select_monthly_sales_stats.csv) - Presents sales data aggregated by month
+9. [Popular Books Results](Part_Two/Queries/selectQueries/RunResults_CSV/select_popular_books.csv) - Shows the most frequently purchased books
+10. [Top Club Members Results](Part_Two/Queries/selectQueries/RunResults_CSV/select_top_club_members.csv) - Lists the most active members based on purchase volume
+11. [Top Librarians Results](Part_Two/Queries/selectQueries/RunResults_CSV/select_top_librarians.csv) - Presents the highest-performing staff members
+12. [Top Non-Members Results](Part_Two/Queries/selectQueries/RunResults_CSV/select_top_non_members.csv) - Identifies frequent customers who are not yet members
+
+#### Delete Queries
+
+This section demonstrates DELETE operations that maintain database cleanliness by removing obsolete or unnecessary data.
+
+1. **Delete Book Language Links** [View SQL](Part_Two/Queries/deleteQueries/delete_book_language_links.sql)
+   
+   This query removes language associations for books that are no longer in stock, maintaining referential integrity in the database.
+   
+   **During Execution:**
+   <div align="center">
+     <img src="Part_Two/Screenshots/deleteQueries/RUNNING_delete_book_language_links.png" width="800" />
+   </div>
+   
+  **Before and After Execution:**
+  <div align="center">
+     <p float="left">
+       <img src="Part_Two/Screenshots/deleteQueries/BEFORE_delete_book_language_links.png" width="28%" />
+       <img src="Part_Two/Screenshots/deleteQueries/AFTER_delete_book_language_links.png" width="28%" />
+     </p>
+  </div>
+  
+
+2. **Delete Obsolete Languages** [View SQL](Part_Two/Queries/deleteQueries/delete_obsolete_languages.sql)
+   
+   This query removes language records that are no longer associated with any books, streamlining the database.
+   
+   **During Execution:**
+   <div align="center">
+     <img src="Part_Two/Screenshots/deleteQueries/RUNNING_delete_obsolete_languages.png" width="800" />
+   </div>
+   
+   
+   **Before and After Execution:**
+   <div align="center">
+     <p float="left">
+       <img src="Part_Two/Screenshots/deleteQueries/BEFORE_delete_obsolete_languages.png" width="35%" />
+       <img src="Part_Two/Screenshots/deleteQueries/AFTER_delete_obsolete_languages.png" width="35%" />
+     </p>
+  </div>
+
+
+4. **Delete Unused Books** [View SQL](Part_Two/Queries/deleteQueries/delete_unused_books.sql)
+   
+   This query removes book records that have zero inventory and no recent sales, cleaning up the database.
+   
+   **During Execution:**
+   <div align="center">
+     <img src="Part_Two/Screenshots/deleteQueries/RUNNING_delete_unused_books.png" width="800" />
+   </div>
+   
+   **Before and After Execution:**
+    <div align="center">
+     <p float="left">
+       <img src="Part_Two/Screenshots/deleteQueries/BEFORE_delete_unused_books.png" width="40%" />
+       <img src="Part_Two/Screenshots/deleteQueries/AFTER_delete_unused_books.png" width="40%" />
+     </p>
+ </div>
+   
+
+#### Update Queries
+
+This section demonstrates UPDATE operations that modify existing data to reflect changes in business conditions or correct information.
+
+1. **Update Book Prices** [View SQL](Part_Two/Queries/updateQueries/update_book_prices.sql)
+   
+   This query adjusts book prices based on popularity and inventory levels, implementing dynamic pricing strategies.
+   
+   **Before Execution:**
+   ![Before Update Book Prices](Part_Two/Screenshots/updateQueries/BEFORE_update_book_prices.png)
+   
+   **During Execution:**
+   ![Running Update Book Prices](Part_Two/Screenshots/updateQueries/RUNNING_update_book_prices.png)
+   
+   **After Execution:**
+   ![After Update Book Prices](Part_Two/Screenshots/updateQueries/AFTER_update_book_prices.png)
+
+2. **Update Customer Discounts** [View SQL](Part_Two/Queries/updateQueries/update_customer_discounts.sql)
+   
+   This query updates customer discount rates based on purchase history and membership status, rewarding loyal customers.
+   
+   **Before Execution:**
+   ![Before Update Customer Discounts](Part_Two/Screenshots/updateQueries/BEFORE_update_customer_discounts.png)
+   
+   **During Execution:**
+   ![Running Update Customer Discounts](Part_Two/Screenshots/updateQueries/RUNNING_update_customer_discounts.png)
+   
+   **After Execution:**
+   ![After Update Customer Discounts](Part_Two/Screenshots/updateQueries/AFTER_update_customer_discounts.png)
+
+3. **Update Librarian Salaries** [View SQL](Part_Two/Queries/updateQueries/update_librarian_salaries.sql)
+   
+   This query adjusts librarian salaries based on performance metrics and experience, supporting fair compensation practices.
+   
+   **Before Execution:**
+   ![Before Update Librarian Salaries](Part_Two/Screenshots/updateQueries/BEFORE_update_librarian_salaries.png)
+   
+   **During Execution:**
+   ![Running Update Librarian Salaries](Part_Two/Screenshots/updateQueries/RUNNING_update_librarian_salaries.png)
+   
+   **After Execution:**
+   ![After Update Librarian Salaries](Part_Two/Screenshots/updateQueries/AFTER_update_librarian_salaries.png)
+
+### Constraints
+
+This section demonstrates the implementation of database constraints that enforce data integrity rules, ensuring the reliability and consistency of the stored information. [View Constraints SQL](Part_Two/Constraints.sql)
+
+1. **Author First Name Not Null**
+   
+   This constraint ensures that every author record includes a first name, maintaining complete author information.
+   
+   ![Author First Name Not Null](Part_Two/Screenshots/alterTable/authorFirstNameNotNull.png)
+
+2. **Author Last Name Not Null**
+   
+   This constraint ensures that every author record includes a last name, maintaining complete author information.
+   
+   ![Author Last Name Not Null](Part_Two/Screenshots/alterTable/authorLastNameNotNull.png)
+
+3. **Book Amount Positive**
+   
+   This constraint ensures that book quantities in orders are always positive numbers, preventing invalid order entries.
+   
+   ![Book Amount Positive](Part_Two/Screenshots/alterTable/bookAmountPositive.png)
+
+4. **Book Price Positive**
+   
+   This constraint ensures that book prices are always positive values, preventing pricing errors.
+   
+   ![Book Price Positive](Part_Two/Screenshots/alterTable/bookPricePositive.png)
+
+5. **Book Quantity Positive**
+   
+   This constraint ensures that book inventory quantities are always positive numbers, maintaining accurate stock levels.
+   
+   ![Book Quantity Positive](Part_Two/Screenshots/alterTable/BookQuantityPositive.png)
+
+6. **Floor Positive**
+   
+   This constraint ensures that shelf location floor numbers are always positive, maintaining valid location data.
+   
+   ![Floor Positive](Part_Two/Screenshots/alterTable/floorPositive.png)
+
+7. **Member ID Unique**
+   
+   This constraint ensures that each customer has a unique membership ID, preventing duplicate memberships.
+   
+   ![Member ID Unique](Part_Two/Screenshots/alterTable/memberIdUnique.png)
+
+8. **Row Positive**
+   
+   This constraint ensures that shelf row numbers are always positive, maintaining valid location data.
+   
+   ![Row Positive](Part_Two/Screenshots/alterTable/rowPositive.png)
+
+9. **Shelf Positive**
+   
+   This constraint ensures that shelf numbers are always positive, maintaining valid location data.
+   
+   ![Shelf Positive](Part_Two/Screenshots/alterTable/shelfPositive.png)
+
+### Rollback and Commit
+
+This section demonstrates transaction management using ROLLBACK and COMMIT operations, which are essential for maintaining database consistency during complex operations. [View Rollback and Commit SQL](Part_Two/RollbackCommit.sql)
+
+The following screenshots illustrate the process of starting a transaction, making changes, and then either committing those changes or rolling them back:
+
+1. **Starting a Transaction**
+   
+   This screenshot shows the beginning of a transaction that will modify book prices.
+   
+   ![Transaction Start](Part_Two/Screenshots/RollbackCommit/Image1.png)
+
+2. **Making Changes Within the Transaction**
+   
+   This screenshot shows the changes being made to book prices within the transaction.
+   
+   ![Transaction Changes](Part_Two/Screenshots/RollbackCommit/Image2.png)
+
+3. **Rollback Operation**
+   
+   This screenshot demonstrates rolling back changes when an error is detected, preserving the original data.
+   
+   ![Rollback Operation](Part_Two/Screenshots/RollbackCommit/Image3.png)
+
+4. **Commit Operation**
+   
+   This screenshot shows the successful completion of a transaction with changes being permanently saved to the database.
+   
+   ![Commit Operation](Part_Two/Screenshots/RollbackCommit/Image4.png)
+
+### Backup Part-Two
+
+To ensure data safety and provide disaster recovery capabilities, a comprehensive backup of the database was created after completing all operations in Part Two.
+
+**Data Backup File** [View Backup File](Part_Two/Backup/backup_2025_05_06.backup)
+
+This backup contains the complete database state, including all tables, constraints, and data as of May 6, 2025. It can be used to restore the database to this point in time if needed.
 
 
