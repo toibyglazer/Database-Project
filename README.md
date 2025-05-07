@@ -225,29 +225,35 @@ This query retrieves all books written by a specific author, providing a compreh
    
    ![Monthly Sales Statistics Query](Part_Two/Screenshots/selectQueries/select_monthly_sales_stats.png)
 
+**8. Select Monthly Sales Statistics** [View SQL](Part_Two/Queries/selectQueries/TheQueries_SQL/select_monthly_sales_stats.sql)
+   
+   This query analyzes sales performance by month, providing valuable insights for seasonal planning and performance evaluation.
+   
+   ![Monthly Sales Statistics Query](Part_Two/Screenshots/selectQueries/select_monthly_sales_stats.png)
+
 **9. Select Popular Books** [View SQL](Part_Two/Queries/selectQueries/TheQueries_SQL/select_popular_books.sql)
-    
-    This query identifies the most frequently purchased books, informing restocking decisions and promotional strategies.
-    
-    ![Popular Books Query](Part_Two/Screenshots/selectQueries/select_popular_books.png)
+   
+This query identifies the most frequently purchased books, informing restocking decisions and promotional strategies.
+   
+![Popular Books Query](Part_Two/Screenshots/selectQueries/select_popular_books.png)
 
 **10. Select Top Club Members** [View SQL](Part_Two/Queries/selectQueries/TheQueries_SQL/select_top_club_members.sql)
-    
-    This query identifies the most active club members based on purchase history, supporting loyalty program management and targeted marketing.
-    
-    ![Top Club Members Query](Part_Two/Screenshots/selectQueries/select_top_club_members.png)
+   
+This query identifies the most active club members based on purchase history, supporting loyalty program management and targeted marketing.
+   
+![Top Club Members Query](Part_Two/Screenshots/selectQueries/select_top_club_members.png)
 
 **11. Select Top Librarians** [View SQL](Part_Two/Queries/selectQueries/TheQueries_SQL/select_top_librarians.sql)
-    
-    This query identifies the most productive librarians based on sales performance, aiding in staff evaluation and incentive programs.
-    
-    ![Top Librarians Query](Part_Two/Screenshots/selectQueries/select_top_librarians.png)
+   
+This query identifies the most productive librarians based on sales performance, aiding in staff evaluation and incentive programs.
+   
+![Top Librarians Query](Part_Two/Screenshots/selectQueries/select_top_librarians.png)
 
 **12. Select Top Non-Members** [View SQL](Part_Two/Queries/selectQueries/TheQueries_SQL/select_top_non_members.sql)
-    
-    This query identifies frequent non-member customers who might benefit from membership, supporting membership conversion strategies.
-    
-    ![Top Non-Members Query](Part_Two/Screenshots/selectQueries/select_top_non_members.png)
+   
+This query identifies frequent non-member customers who might benefit from membership, supporting membership conversion strategies.
+   
+![Top Non-Members Query](Part_Two/Screenshots/selectQueries/select_top_non_members.png)
 
 ##### Query Execution Results in CSV Files
 
@@ -270,7 +276,7 @@ The following CSV files contain the results of executing the SELECT queries desc
 
 This section demonstrates DELETE operations that maintain database cleanliness by removing obsolete or unnecessary data.
 
-1. **Delete Book Language Links** [View SQL](Part_Two/Queries/deleteQueries/delete_book_language_links.sql)
+**1. Delete Book Language Links** [View SQL](Part_Two/Queries/deleteQueries/delete_book_language_links.sql)
    
    This query removes language associations for books that are no longer in stock, maintaining referential integrity in the database.
    
@@ -288,7 +294,7 @@ This section demonstrates DELETE operations that maintain database cleanliness b
   </div>
   
 
-2. **Delete Obsolete Languages** [View SQL](Part_Two/Queries/deleteQueries/delete_obsolete_languages.sql)
+**2. Delete Obsolete Languages** [View SQL](Part_Two/Queries/deleteQueries/delete_obsolete_languages.sql)
    
    This query removes language records that are no longer associated with any books, streamlining the database.
    
@@ -307,7 +313,7 @@ This section demonstrates DELETE operations that maintain database cleanliness b
   </div>
 
 
-4. **Delete Unused Books** [View SQL](Part_Two/Queries/deleteQueries/delete_unused_books.sql)
+**4. Delete Unused Books** [View SQL](Part_Two/Queries/deleteQueries/delete_unused_books.sql)
    
    This query removes book records that have zero inventory and no recent sales, cleaning up the database.
    
@@ -333,41 +339,52 @@ This section demonstrates UPDATE operations that modify existing data to reflect
    
    This query adjusts book prices based on popularity and inventory levels, implementing dynamic pricing strategies.
    
-   **Before Execution:**
-   ![Before Update Book Prices](Part_Two/Screenshots/updateQueries/BEFORE_update_book_prices.png)
-   
    **During Execution:**
-   ![Running Update Book Prices](Part_Two/Screenshots/updateQueries/RUNNING_update_book_prices.png)
+   <div align="center">
+     <img src="Part_Two/Screenshots/updateQueries/RUNNING_update_book_prices.png" width="800" />
+   </div>
    
-   **After Execution:**
-   ![After Update Book Prices](Part_Two/Screenshots/updateQueries/AFTER_update_book_prices.png)
+   **Before and After Execution:**
+    <div align="center">
+     <p float="center">
+       <img src="Part_Two/Screenshots/updateQueries/BEFORE_update_book_prices.png" width="35%" />
+       <img src="Part_Two/Screenshots/updateQueries/AFTER_update_book_prices.png" width="35%" />
+     </p>
+     </div>
 
-2. **Update Customer Discounts** [View SQL](Part_Two/Queries/updateQueries/update_customer_discounts.sql)
+3. **Update Customer Discounts** [View SQL](Part_Two/Queries/updateQueries/update_customer_discounts.sql)
    
    This query updates customer discount rates based on purchase history and membership status, rewarding loyal customers.
    
-   **Before Execution:**
-   ![Before Update Customer Discounts](Part_Two/Screenshots/updateQueries/BEFORE_update_customer_discounts.png)
-   
    **During Execution:**
-   ![Running Update Customer Discounts](Part_Two/Screenshots/updateQueries/RUNNING_update_customer_discounts.png)
+   <div align="center">
+     <img src="Part_Two/Screenshots/updateQueries/RUNNING_update_customer_discounts.png" width="800" />
+   </div>
    
-   **After Execution:**
-   ![After Update Customer Discounts](Part_Two/Screenshots/updateQueries/AFTER_update_customer_discounts.png)
+   **Before and After Execution:**
+    <div align="center">
+     <p float="center">
+       <img src="Part_Two/Screenshots/updateQueries/BEFORE_update_customer_discounts.png" width="35%" />
+       <img src="Part_Two/Screenshots/updateQueries/AFTER_update_customer_discounts.png" width="35%" />
+     </p>
+     </div>
 
-3. **Update Librarian Salaries** [View SQL](Part_Two/Queries/updateQueries/update_librarian_salaries.sql)
+4. **Update Librarian Salaries** [View SQL](Part_Two/Queries/updateQueries/update_librarian_salaries.sql)
    
    This query adjusts librarian salaries based on performance metrics and experience, supporting fair compensation practices.
    
-   **Before Execution:**
-   ![Before Update Librarian Salaries](Part_Two/Screenshots/updateQueries/BEFORE_update_librarian_salaries.png)
-   
    **During Execution:**
-   ![Running Update Librarian Salaries](Part_Two/Screenshots/updateQueries/RUNNING_update_librarian_salaries.png)
+   <div align="center">
+     <img src="Part_Two/Screenshots/updateQueries/RUNNING_update_librarian_salaries.png" width="800" />
+   </div>
    
-   **After Execution:**
-   ![After Update Librarian Salaries](Part_Two/Screenshots/updateQueries/AFTER_update_librarian_salaries.png)
-
+   **Before and After Execution:**
+    <div align="center">
+     <p float="center">
+       <img src="Part_Two/Screenshots/updateQueries/BEFORE_update_librarian_salaries.png" width="35%" />
+       <img src="Part_Two/Screenshots/updateQueries/AFTER_update_librarian_salaries.png" width="35%" />
+     </p>
+     </div>
 ### Constraints
 
 This section demonstrates the implementation of database constraints that enforce data integrity rules, ensuring the reliability and consistency of the stored information. [View Constraints SQL](Part_Two/Constraints.sql)
