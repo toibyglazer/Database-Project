@@ -28,22 +28,18 @@ Helps users find trending books easily.
 */
 
 SELECT 
-    g.GenreName AS Genre,
-    g.MinAge AS RecommendedMinimumAge,
-    b.BookID,
-    b.TitleBookName AS BookTitle,
-    a.FirstName || ' ' || a.LastName AS AuthorName,
-    b.price AS Price,
-    b.amount AS AvailableInventory,
-    STRING_AGG(DISTINCT bl.LanguageName, ', ') AS AvailableLanguages,
-    COALESCE(SUM(bo.BookQuantity), 0) AS QuantityPurchased
+     b.BookID AS BookID,
+     b.TitleBookName AS BookName,
+	 STRING_AGG(DISTINCT bl.LanguageName, ', ') AS AvailableLanguages,
+     g.MinAge AS MinimumAge,
+	 b.amount AS StockQuantity
+   
 FROM GenreTypes g
 JOIN BookList b ON g.GenreID = b.GenreID
 JOIN Author a ON b.AuthorID = a.AuthorID
 LEFT JOIN Language l ON b.BookID = l.BookID
 LEFT JOIN BookLanguage bl ON l.LanguageID = bl.LanguageID
 LEFT JOIN BookToOrder bo ON b.BookID = bo.BookID
-LEFT JOIN Order_Table o ON bo.OrderID = o.OrderID
-WHERE g.GenreID = :genre_id  -- Replace with the desired genre ID
-GROUP BY g.GenreName, g.MinAge, b.BookID, BookTitle, AuthorName, b.price, b.amount
-ORDER BY QuantityPurchased DESC, BookTitle;
+WHERE g.GenreID = 43  -- Replace with the desired genre ID
+GROUP BY b.BookID, b.TitleBookName, a.FirstName, a.LastName, g.MinAge, b.amount, b.price
+ORDER BY COALESCE(SUM(bo.BookQuantity), 0) DESC, b.TitleBookName;
