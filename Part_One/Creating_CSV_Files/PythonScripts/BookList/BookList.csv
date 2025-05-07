@@ -1,0 +1,401 @@
+BookID,TitleBookName,PublicationYear,price,amount,ShelfLocationID,AuthorID,GenreID
+1,Team-oriented demand-driven process improvement,1922,54.04,49,14,334,26
+2,Modern Love,1979,169.62,45,225,252,15
+3,His Storm,1974,149.43,32,277,339,24
+4,Public-key 24/7 concept,1906,149.46,30,185,274,20
+5,Public-key actuating parallelism,2023,61.35,10,21,347,44
+6,Legend of the Ancients,2019,195.05,16,65,117,38
+7,Synchronized asymmetric middleware,1911,47.35,39,23,161,8
+8,Implemented exuding application,1938,131.16,49,80,244,30
+9,Life of the Sacred,1921,168.49,20,230,366,31
+10,The River of the Unlikely,1941,171.44,7,253,142,22
+11,Tale,1976,183.23,1,365,59,28
+12,Business-focused cohesive model,2011,119.71,27,129,84,48
+13,Quest,2014,161.2,4,16,184,5
+14,Her Story,2014,142.99,24,107,96,21
+15,Her Ice,1975,141.73,31,348,387,26
+16,Our Forest of the Expected,1922,132.53,17,77,165,20
+17,My Dawn of the Future,1980,74.04,33,177,324,47
+18,Her Shadow of the Unsurprising,1903,31.08,36,396,63,18
+19,Proactive explicit strategy,2008,173.68,28,384,195,48
+20,Optimized 24/7 access,2005,106.31,10,386,319,44
+21,My Life of the Remembered,2002,105.61,1,231,28,4
+22,Sun,2007,164.52,39,225,255,1
+23,Ocean of the Past,2016,141.49,26,166,185,6
+24,Ocean of the Sacred,1990,92.14,29,114,132,7
+25,Her Fire of the Extraordinary,1994,41.92,29,13,78,48
+26,Assimilated bi-directional attitude,2003,190.18,6,2,156,45
+27,My Lightning of the Unknown,1917,194.36,18,330,119,37
+28,Our Mystery,1930,110.11,37,337,131,13
+29,Their Fall of Time,1921,145.99,36,285,187,6
+30,Summer of the Found,1998,199.4,16,69,354,42
+31,Reactive holistic conglomeration,1999,124.21,47,255,173,16
+32,Darkness of the Extraordinary,1965,151.69,41,322,132,43
+33,Their Ocean of the Improbable,2023,38.97,23,171,300,15
+34,Secret Thunder,1919,100.98,38,93,351,2
+35,Reverse-engineered bottom-line throughput,1954,64.25,50,136,215,39
+36,War,1988,126.01,30,90,21,9
+37,Persevering client-server customer loyalty,2011,124.45,37,238,239,6
+38,Implemented mobile benchmark,1911,154.21,18,31,268,11
+39,Secret Spring,1980,197.96,42,297,55,46
+40,Open-source heuristic frame,1930,47.97,45,93,20,50
+41,Integrated even-keeled interface,1930,81.03,27,6,206,19
+42,Monitored holistic orchestration,1930,172.74,33,73,207,45
+43,My Darkness of the Found,1907,144.11,19,54,59,17
+44,A Snow of the Unlikely,1921,99.52,40,314,215,26
+45,Legend of the Surprising,2001,117.67,40,163,387,41
+46,Organized systematic monitoring,1916,34.68,45,332,40,38
+47,Secret Legend,1991,133.07,37,2,23,48
+48,Monitored bottom-line infrastructure,2013,117.04,12,335,192,4
+49,Upgradable exuding analyzer,1921,46.7,19,29,83,49
+50,Lost Fall,1969,160.83,45,152,284,40
+51,Hidden Saga of the Possible,1979,95.53,6,22,14,31
+52,Forgotten Forest of the Impossible,1957,101.63,34,200,89,4
+53,Her Mystery,1926,167.07,35,216,104,48
+54,Ancient Fire of the Improbable,1912,83.8,42,371,243,1
+55,Hidden Day,1912,195.28,45,317,345,17
+56,Face-to-face executive time-frame,1947,59.2,4,73,253,37
+57,A Dawn,1976,57.98,40,379,10,19
+58,A Fall of the Found,1916,135.53,3,292,343,50
+59,Journey of the Forgotten,1915,125.65,41,123,227,10
+60,A History,1913,173.6,47,311,114,34
+61,Devolved 5thgeneration database,2017,195.13,19,246,279,27
+62,Their History,1964,170.52,33,294,66,18
+63,Modern Shadow,1981,148.68,22,285,41,31
+64,Dawn,1951,107.95,49,210,16,45
+65,Switchable next generation system engine,1902,96.17,4,37,319,47
+66,Upgradable needs-based functionalities,2010,167.0,4,259,311,7
+67,Their History of the Surprising,1922,162.63,15,199,196,49
+68,User-friendly neutral knowledge user,1964,198.19,19,274,385,19
+69,Diverse interactive installation,1979,74.55,27,236,214,16
+70,Forgotten Thunder,1969,148.63,11,181,54,13
+71,Modern History of the Expected,1988,168.5,2,16,4,21
+72,Focused multi-tasking flexibility,1959,60.16,27,106,337,17
+73,Shadow,1928,76.63,26,78,308,22
+74,Journey of the Surprising,1927,144.25,8,186,256,27
+75,My Garden,1961,182.18,12,52,48,19
+76,His River,1984,42.57,39,21,148,2
+77,Wind of the Hidden,1942,178.41,14,24,331,16
+78,Secret Dawn,1990,102.9,50,220,187,43
+79,Total web-enabled hub,1921,73.58,5,138,265,47
+80,Open-architected multi-tasking utilization,1914,81.51,43,54,343,8
+81,Our Shadow,1923,128.51,10,77,129,22
+82,Enterprise-wide incremental algorithm,1973,169.11,26,234,241,44
+83,Versatile 24hour matrices,1983,198.07,35,379,309,48
+84,Mandatory bi-directional groupware,1989,102.23,15,126,72,4
+85,Persistent local workforce,1966,83.83,11,356,67,34
+86,Stand-alone context-sensitive ability,1956,47.75,7,353,214,37
+87,Lost Saga,1984,110.79,31,341,34,28
+88,Her Adventure,1913,164.41,46,3,64,12
+89,A Tale of the Ancients,1961,139.1,13,389,111,4
+90,Snow,2011,190.45,13,315,266,20
+91,Horizontal composite structure,1912,85.4,6,193,190,5
+92,Polarized 4thgeneration parallelism,2024,157.11,3,217,50,44
+93,Secret Star,1912,187.28,23,122,390,8
+94,Ancient Ocean,1939,122.12,9,135,313,31
+95,Their Chronicles,2017,72.73,45,352,22,43
+96,Her Sky of the Unexpected,1904,63.09,21,241,195,36
+97,Secret Light of the Found,1969,39.91,7,183,387,36
+98,Ancient Love of the Ordinary,1955,182.17,25,308,249,5
+99,Persevering mobile portal,1919,130.47,12,209,122,15
+100,De-engineered user-facing model,2022,72.92,42,274,208,24
+101,Secret Love,1961,149.92,20,171,157,16
+102,Star of the Present,2020,87.03,19,326,18,32
+103,Lost Mountain of the Divine,1905,64.62,33,160,176,34
+104,A Shadow,1963,163.79,43,209,145,23
+105,Adaptive zero-defect definition,1966,59.29,40,317,133,28
+106,Secret Light,1949,129.7,36,289,293,17
+107,Organic hybrid superstructure,1944,145.84,15,120,400,2
+108,Synergistic content-based pricing structure,1926,69.02,11,373,249,28
+109,Exclusive demand-driven middleware,1955,97.25,18,40,301,26
+110,Secured static neural-net,1925,182.56,11,1,259,32
+111,Path,2016,79.14,43,294,106,17
+112,His Shadow of the Ordinary,1935,86.51,1,179,352,21
+113,My Mountain,1942,198.74,44,203,151,24
+114,Forgotten Story of Time,1948,93.69,4,312,186,22
+115,Sharable human-resource secured line,1981,74.81,15,196,232,50
+116,Phased national Graphic Interface,1950,92.46,11,368,287,37
+117,Modern Darkness of the Likely,1980,93.24,30,184,137,50
+118,My Dream,1984,155.7,32,392,231,30
+119,Our War of the Unknown,1965,160.18,36,231,11,47
+120,Cloned neutral matrix,1961,197.95,6,298,131,31
+121,Their Mystery,2008,77.53,28,123,372,7
+122,Modern Sky,2016,73.52,1,93,7,19
+123,Forgotten Star of the Ancients,1936,79.38,18,223,303,12
+124,De-engineered needs-based task-force,2024,191.9,44,350,347,9
+125,My Rain of the Possible,1903,146.62,15,348,303,8
+126,Ancient Myth of the Past,1995,166.55,45,376,344,3
+127,Universal motivating project,2010,118.56,9,154,174,28
+128,Forgotten Night of the Unsurprising,1995,61.37,24,224,137,7
+129,Secret Moon,1901,103.07,32,262,166,47
+130,Her Lightning of the Expected,2013,186.58,45,169,147,4
+131,Secret Mystery,1920,122.15,46,203,304,14
+132,Hidden Dusk,1989,149.3,37,154,320,14
+133,Ancient Rain of the Profane,1915,193.57,21,230,337,41
+134,Mystery,1993,94.73,9,185,355,49
+135,Ancient Lightning,1986,155.68,30,94,127,16
+136,Forgotten Love,2006,103.53,13,3,271,15
+137,Modern Light,1942,129.5,39,218,29,7
+138,The Adventure,1915,132.47,43,252,178,4
+139,Ocean of the Found,1993,128.7,21,93,133,43
+140,Ice of the Impossible,1928,169.02,34,389,278,12
+141,History of the Ordinary,1970,39.55,37,218,249,41
+142,Hidden Path,1946,70.01,3,69,92,1
+143,Visionary composite customer loyalty,1977,104.26,4,384,41,5
+144,Mystery of the Unsurprising,1938,195.47,47,245,212,21
+145,Advanced asymmetric product,1955,110.98,9,190,396,24
+146,A Dusk of the Past,2022,85.72,20,255,218,10
+147,Our Love,1999,198.62,33,398,370,15
+148,Hidden Garden,1973,114.29,50,303,175,21
+149,His Secret of the Mundane,2020,81.63,25,244,360,5
+150,Thunder of the Revealed,1945,154.93,1,63,158,10
+151,Our Night,1906,37.52,3,400,250,15
+152,His Snow of the Past,1921,131.45,19,346,106,34
+153,Fully-configurable didactic projection,2019,55.02,34,54,25,50
+154,Nightmare of the Past,1971,82.25,44,324,89,22
+155,Winter,1996,43.31,38,264,94,4
+156,Modern Thunder of the Expected,1940,135.56,31,362,147,39
+157,Her Quest of the Revealed,1902,47.19,7,296,325,14
+158,My Storm of the Remembered,1998,40.87,18,38,42,50
+159,Polarized bi-directional application,1967,154.44,25,342,45,25
+160,Optimized uniform throughput,1916,174.64,21,309,40,13
+161,Chronicles,1986,96.24,15,251,255,14
+162,Our Peace of the Profane,1982,86.41,8,318,59,36
+163,Her Journey,1962,153.94,41,255,344,12
+164,His Darkness,1983,116.09,45,69,163,17
+165,Modern Ocean,1942,183.93,45,263,373,35
+166,Our River of the Revealed,1973,48.21,6,262,11,16
+167,Forgotten Dusk,1950,157.13,18,170,363,37
+168,Secret History of the Improbable,1923,197.6,47,294,340,29
+169,Modern Road,2015,41.28,22,339,262,28
+170,Forgotten Nightmare of the Present,1940,44.08,17,208,143,29
+171,His Sun of the Present,1941,173.03,27,74,210,30
+172,Expanded mission-critical portal,1978,58.95,16,101,205,44
+173,Configurable tangible concept,1990,181.71,40,270,248,28
+174,Story of the Extraordinary,1971,55.96,13,5,64,28
+175,Her Winter of the Profane,2019,55.76,32,38,268,18
+176,My Star of the Mundane,1912,43.4,21,181,225,23
+177,Hidden Moon,1939,178.57,45,190,254,27
+178,Operative analyzing collaboration,2005,86.93,13,80,169,16
+179,Lost Spring,1911,119.7,45,299,37,5
+180,Enterprise-wide global Graphic Interface,2018,62.72,45,191,150,10
+181,The Star,1951,177.69,43,383,17,45
+182,Lightning,2024,184.48,9,333,72,39
+183,Rain,1930,186.56,28,362,277,18
+184,Synchronized tangible Local Area Network,1975,69.28,46,223,87,12
+185,My Myth,2002,116.32,43,127,134,13
+186,The Legend,1964,104.22,50,365,171,19
+187,Their Path of the Hidden,1952,180.79,41,307,238,22
+188,Managed web-enabled hub,1924,76.66,4,290,261,45
+189,Forgotten Nightmare of the Unsurprising,1978,155.56,49,48,376,39
+190,Realigned systematic array,1947,69.0,23,312,314,42
+191,Lost Summer of the Expected,1988,192.99,13,376,47,24
+192,Their Dream,2008,146.9,16,30,115,48
+193,Public-key optimal middleware,1921,106.26,26,346,289,20
+194,Wind of the Likely,1963,155.65,36,142,267,7
+195,Advanced well-modulated toolset,1961,79.14,39,382,235,42
+196,Enterprise-wide 24/7 conglomeration,2015,123.21,17,386,133,39
+197,Quality-focused dynamic benchmark,2009,190.7,30,124,113,13
+198,Function-based foreground middleware,1916,79.47,17,112,71,13
+199,Love,2015,100.73,2,300,58,1
+200,Light,2001,164.76,35,295,67,24
+201,The Life,1956,87.06,38,356,223,46
+202,Ancient Storm of the Unsurprising,2024,122.86,39,35,294,45
+203,Forgotten Ice,1969,104.61,8,19,378,14
+204,A Star,1956,147.97,34,37,359,22
+205,Devolved content-based artificial intelligence,1934,79.77,12,292,379,34
+206,Their Wind,1979,185.03,6,186,56,6
+207,Hidden Secret,1914,83.64,25,234,157,30
+208,Integrated intangible paradigm,1954,82.74,1,295,187,2
+209,Her Night of the Ordinary,1980,69.18,37,68,78,5
+210,Their Light,2019,34.42,29,238,132,48
+211,Storm of the Forgotten,1979,65.72,18,286,355,12
+212,Secret Path,1970,128.34,3,346,50,49
+213,Modern Storm of the Possible,2007,113.19,11,348,55,22
+214,A Dream of the Probable,2024,45.5,22,312,73,11
+215,Her Thunder,2014,56.26,5,225,295,14
+216,Modern Legend,1914,145.12,23,272,247,50
+217,Her Adventure of the Extraordinary,1949,53.08,13,347,228,27
+218,Ancient Dusk,1900,30.81,47,50,24,41
+219,My Nightmare of the Found,1918,178.25,36,82,108,18
+220,Our Snow of the Forgotten,1980,122.55,4,259,172,40
+221,Hidden Garden of the Surprising,1924,38.29,21,173,193,28
+222,Their Fire,1973,80.44,34,99,68,36
+223,Night,2009,91.26,46,373,313,45
+224,My Secret of the Remembered,1992,92.02,26,161,377,47
+225,My Spring,2012,131.45,43,309,347,23
+226,Ergonomic 24/7 leverage,1993,173.11,27,311,194,49
+227,Mandatory intermediate product,1938,59.18,35,376,224,37
+228,Quality-focused exuding website,1980,136.51,47,93,11,6
+229,Business-focused transitional knowledgebase,2006,56.43,50,18,201,5
+230,Ocean,2011,69.84,7,351,25,45
+231,Function-based disintermediate software,2007,174.86,37,309,37,34
+232,Her Star,1909,196.7,16,86,325,19
+233,Decentralized clear-thinking migration,2016,157.1,7,395,363,7
+234,My Forest of the Surprising,1970,59.32,12,347,222,30
+235,Ancient Legend of the Extraordinary,2024,71.44,47,121,207,38
+236,Fundamental 24hour challenge,1997,171.82,29,157,281,5
+237,User-friendly human-resource concept,1927,169.16,8,313,388,12
+238,Night of Fate,1968,73.13,14,37,300,11
+239,Our Myth,1910,146.51,13,269,2,31
+240,Ancient Secret of the Found,1981,43.17,27,290,194,46
+241,Mountain of the Lost,2015,103.97,16,379,113,11
+242,Myth of the Possible,1956,149.19,5,378,236,30
+243,Organized contextually-based groupware,2004,104.4,1,84,213,13
+244,Function-based multi-tasking data-warehouse,1964,58.2,25,46,82,31
+245,Networked contextually-based interface,1980,108.98,19,149,219,5
+246,Hidden Fire,1996,123.24,44,65,297,45
+247,Secret Love of the Future,1992,60.16,19,122,29,49
+248,The Life of the Hidden,1965,185.24,25,107,249,46
+249,Ergonomic multi-tasking emulation,1964,39.01,43,199,45,31
+250,Modern Sun,1968,76.18,5,16,180,4
+251,Modern Path,1993,190.55,17,247,18,14
+252,Path of the Mundane,1958,133.01,19,6,221,20
+253,Her Shadow of the Surprising,1987,150.66,10,69,363,21
+254,Lost River of the Lost,1909,49.12,32,325,137,37
+255,Virtual 24hour protocol,2007,160.74,2,303,294,46
+256,Modern Storm,1942,74.05,24,162,80,36
+257,A Sun,1941,116.2,13,251,353,23
+258,Saga,1943,102.5,22,154,268,3
+259,Ancient Fall of the Present,1976,101.99,13,126,33,29
+260,My Road of Destiny,1989,51.35,12,217,184,19
+261,Customer-focused actuating service-desk,1983,66.66,29,181,231,33
+262,Dawn of the Ordinary,1973,115.29,25,82,365,48
+263,Ancient Garden of the Unexpected,1935,135.9,14,365,225,19
+264,Monitored composite implementation,1983,38.68,5,110,142,44
+265,Her Star of the Found,1936,135.78,9,98,159,14
+266,Lost Quest of the Lost,1956,75.32,21,141,276,23
+267,Her Winter of the Unexpected,1901,190.22,42,271,154,23
+268,Intuitive bottom-line standardization,1922,100.5,32,292,133,6
+269,Ancient Secret of the Mundane,1938,156.29,34,290,131,12
+270,Synergistic optimal analyzer,1979,67.16,47,260,286,30
+271,Function-based attitude-oriented product,1956,148.79,3,297,236,31
+272,Decentralized holistic encryption,1922,159.87,13,224,101,30
+273,Secret Sky,1991,145.37,40,272,268,43
+274,Road,1990,43.03,49,318,303,45
+275,Extended full-range attitude,1913,173.25,14,217,13,40
+276,Ancient Thunder,1905,47.95,48,185,396,1
+277,Wind,1964,75.26,7,31,217,27
+278,Reactive zero tolerance approach,1938,134.44,22,397,90,6
+279,Our Secret,2020,33.99,34,4,220,6
+280,Way of the Possible,1925,91.69,25,155,329,15
+281,Hidden Life,1947,107.88,35,388,167,28
+282,Forest,1994,130.73,5,365,89,29
+283,Pre-emptive modular protocol,1930,109.47,30,3,322,23
+284,Modern Winter,1936,45.38,38,161,352,41
+285,A Fire,1952,91.18,19,64,84,12
+286,Love of the Revealed,1979,49.64,12,392,204,32
+287,A Dusk,1965,74.86,10,373,210,35
+288,Ancient Saga,1902,157.29,46,20,283,28
+289,Her Day of the Ancients,2016,45.37,17,31,15,16
+290,Thunder,2020,47.42,9,147,198,3
+291,Self-enabling actuating implementation,2015,63.09,12,90,241,14
+292,Forgotten Forest,1996,72.93,25,103,193,48
+293,Inverse reciprocal customer loyalty,1931,116.53,23,190,390,20
+294,Optional optimal utilization,1989,186.92,8,337,88,28
+295,Triple-buffered uniform product,1973,76.45,36,104,269,46
+296,Managed discrete emulation,1902,156.4,50,5,316,33
+297,Their Rain of the Profane,1936,188.83,44,253,180,7
+298,Switchable directional monitoring,2002,169.22,38,353,366,42
+299,Secret Way of the Future,2013,172.1,37,149,244,7
+300,Switchable impactful pricing structure,1929,128.24,19,295,33,17
+301,Modern Myth,1967,139.89,48,214,373,3
+302,Their Moon,1950,160.88,27,170,146,49
+303,Ice of the Unlikely,2013,166.61,4,175,280,36
+304,Mystery of the Found,1959,92.28,22,16,80,24
+305,A History of the Unknown,1965,82.76,9,141,231,18
+306,Operative user-facing paradigm,1931,99.01,13,24,124,41
+307,My Storm,1924,150.04,22,367,191,34
+308,Night of the Expected,2011,131.1,1,154,188,3
+309,Lost Winter of the Unexpected,1947,140.86,37,303,253,5
+310,Our Nightmare of the Probable,1956,199.15,24,252,166,41
+311,Diverse intangible analyzer,2005,179.89,49,157,145,11
+312,Tale of the Divine,1982,31.52,5,279,327,29
+313,Streamlined optimal superstructure,2003,38.3,10,96,286,22
+314,His Shadow,2018,161.31,16,400,166,28
+315,Configurable multimedia matrix,1959,142.58,13,130,98,43
+316,Peace,1996,68.45,40,56,336,29
+317,Advanced impactful superstructure,1940,30.97,33,95,113,25
+318,The Dusk,1910,105.27,10,299,367,30
+319,Quest of the Lost,1970,68.3,47,347,5,36
+320,Diverse fault-tolerant customer loyalty,1913,106.99,11,60,271,32
+321,Ancient Spring,1933,168.54,19,233,394,9
+322,Total scalable Graphical User Interface,1949,39.85,16,250,182,28
+323,Love of the Ancients,1968,42.16,36,350,116,32
+324,Lost Sky of the Remembered,2014,160.44,1,40,213,1
+325,Forgotten Night,1914,41.24,10,396,271,34
+326,Streamlined tertiary throughput,1947,75.23,20,367,201,13
+327,Modern Garden,1978,141.5,17,163,57,13
+328,Devolved executive alliance,1921,184.26,28,25,4,27
+329,Multi-layered multi-state database,1972,150.08,8,181,120,22
+330,Our Dream of the Profane,1924,131.34,31,269,175,42
+331,Quality-focused hybrid architecture,1990,121.62,18,374,160,44
+332,Light of the Improbable,1951,102.3,48,106,49,33
+333,Lost Sky of the Mundane,1988,194.16,8,126,240,45
+334,Organic zero administration circuit,1941,74.49,46,26,224,12
+335,Stand-alone multi-state infrastructure,1925,134.16,27,274,399,19
+336,Persevering multimedia model,1957,43.89,21,70,88,40
+337,Hidden Spring of the Mundane,1925,172.25,21,157,72,26
+338,Innovative national policy,1942,152.13,11,248,112,23
+339,Our Life of the Surprising,1935,43.47,30,303,60,32
+340,Our Storm of the Impossible,1931,58.55,26,113,26,47
+341,A Lightning,1918,121.25,49,141,31,33
+342,Her Life of the Ordinary,2014,141.86,42,263,281,2
+343,Modern Thunder,2007,115.2,9,382,59,13
+344,Fall,2022,109.86,43,56,231,32
+345,Her Adventure of the Unlikely,1941,138.51,42,19,187,31
+346,His Fire,2022,78.75,44,33,77,15
+347,Universal system-worthy utilization,1930,164.23,13,398,168,22
+348,My Thunder,1991,123.85,13,234,343,43
+349,Their Light of the Hidden,2009,129.84,37,161,334,19
+350,Secret Wind,2014,128.58,34,345,68,39
+351,Hidden Sky of the Expected,1992,101.75,46,212,331,45
+352,A Saga,1909,40.08,33,236,220,25
+353,My Wind,2017,40.41,35,9,12,1
+354,Their Darkness of the Profane,2020,73.08,18,99,271,46
+355,My Dawn,1936,116.75,32,133,141,50
+356,Mountain of the Improbable,1925,110.77,1,358,83,6
+357,Realigned asynchronous superstructure,1957,49.12,49,371,329,23
+358,Mandatory foreground paradigm,2009,94.98,47,40,75,3
+359,Automated clear-thinking complexity,1967,52.73,34,89,256,12
+360,Modern Dusk of the Future,1979,78.51,10,310,352,25
+361,Mandatory asynchronous encoding,1909,79.74,17,72,231,9
+362,Versatile exuding success,2019,55.15,4,152,169,47
+363,His Dream of the Ordinary,2010,81.68,7,321,373,32
+364,Vision-oriented optimal forecast,2018,87.3,18,284,296,5
+365,Hidden Spring of the Past,1951,46.68,12,126,268,38
+366,Hidden Mystery of the Present,1991,130.4,42,184,140,23
+367,Mountain,1944,105.66,19,126,199,46
+368,Reactive disintermediate time-frame,1977,58.84,11,214,392,9
+369,The Dream of the Forgotten,1973,123.69,5,209,50,25
+370,My Dusk of Time,2004,176.87,3,366,342,26
+371,His Wind of the Surprising,1917,159.75,6,348,207,3
+372,Cross-group modular system engine,1995,197.02,41,371,209,4
+373,Our Sun of the Extraordinary,2015,154.53,27,303,39,42
+374,A Darkness,1988,42.22,49,319,100,42
+375,Profit-focused regional alliance,2011,42.58,7,374,41,6
+376,Lost Shadow,1938,104.58,32,383,41,40
+377,Lightning of the Past,1975,32.14,39,104,162,28
+378,Centralized logistical alliance,1910,121.75,20,297,166,7
+379,Multi-tiered stable protocol,2000,95.15,46,158,254,34
+380,Open-architected static core,2014,106.21,23,18,295,40
+381,Switchable background Graphical User Interface,2006,75.68,50,355,162,23
+382,Universal non-volatile budgetary management,2002,44.1,49,129,315,9
+383,Their Saga,2005,171.92,37,343,272,34
+384,The Wind,1914,36.08,33,388,387,22
+385,User-friendly empowering policy,1907,151.74,50,251,2,34
+386,Her Winter,1966,86.22,13,17,85,35
+387,Modern Winter of the Hidden,1939,155.39,39,360,345,38
+388,Story,1954,150.89,16,24,277,31
+389,Integrated secondary hardware,1952,92.7,31,125,325,50
+390,Team-oriented stable info-mediaries,1974,149.6,12,352,133,10
+391,Their Garden of the Ordinary,2015,59.33,25,131,301,10
+392,Modern Quest,1979,105.46,2,236,225,12
+393,His Fall of the Impossible,1984,186.15,32,16,293,10
+394,Fundamental encompassing support,2016,133.34,49,101,399,15
+395,A Wind,2004,138.45,48,201,273,30
+396,Lightning of the Lost,1922,71.2,1,121,161,31
+397,Nightmare,1917,187.92,34,97,173,11
+398,The Fall of the Expected,1988,122.35,47,29,395,34
+399,A Rain,1946,115.86,14,5,205,30
+400,My Tale,2012,113.4,48,303,274,46

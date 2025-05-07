@@ -1,0 +1,20 @@
+# Library Database Initialization Order
+# This file outlines the correct order for importing data into the library database tables.
+
+# Step 1: Basic Tables (No Dependencies)
+1. Person                 # Contains all people (customers and librarians)
+2. ShelfLocation          # Physical locations of books
+3. Author                 # Book authors
+4. GenreTypes             # Book genres
+5. BookLanguage           # Available languages
+
+# Step 2: Tables with Primary Dependencies
+6. Customer               # Depends on Person
+7. Librarian              # Depends on Person
+8. BookList               # Depends on ShelfLocation, Author, GenreTypes
+
+# Step 3: Tables with Complex Dependencies
+9. Language               # Depends on BookList, BookLanguage
+10. Orders                # Depends on Customer, Librarian
+11. BookToOrder           # Depends on Orders, BookList
+
