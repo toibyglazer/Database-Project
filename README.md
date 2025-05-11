@@ -369,8 +369,8 @@ This section demonstrates UPDATE operations that modify existing data to reflect
    **Before and After Execution:**
     <div align="center">
      <p float="center">
-       <img src="Part_Two/Screenshots/updateQueries/BEFORE_update_book_prices.png" width="39.4%" />
-       <img src="Part_Two/Screenshots/updateQueries/AFTER_update_book_prices.png" width="39.4%" />
+       <img src="Part_Two/Screenshots/updateQueries/BEFORE_update_book_prices.png" width="39.6%" />
+       <img src="Part_Two/Screenshots/updateQueries/AFTER_update_book_prices.png" width="39.6%" />
      </p>
      </div><br>
 
@@ -386,8 +386,8 @@ This section demonstrates UPDATE operations that modify existing data to reflect
    **Before and After Execution:**
     <div align="center">
      <p float="center">
-       <img src="Part_Two/Screenshots/updateQueries/BEFORE_update_customer_discounts.png" width="39.3%" />
-       <img src="Part_Two/Screenshots/updateQueries/AFTER_update_customer_discounts.png" width="39.3%" />
+       <img src="Part_Two/Screenshots/updateQueries/BEFORE_update_customer_discounts.png" width="39.4%" />
+       <img src="Part_Two/Screenshots/updateQueries/AFTER_update_customer_discounts.png" width="39.4%" />
      </p>
      </div><br>
 
@@ -403,8 +403,8 @@ This section demonstrates UPDATE operations that modify existing data to reflect
    **Before and After Execution:**
     <div align="center">
      <p float="center">
-       <img src="Part_Two/Screenshots/updateQueries/BEFORE_update_librarian_salaries.png" width="39.4%" />
-       <img src="Part_Two/Screenshots/updateQueries/AFTER_update_librarian_salaries.png" width="39.4%" />
+       <img src="Part_Two/Screenshots/updateQueries/BEFORE_update_librarian_salaries.png" width="39.5%" />
+       <img src="Part_Two/Screenshots/updateQueries/AFTER_update_librarian_salaries.png" width="39.5%" />
      </p>
      </div>
      
