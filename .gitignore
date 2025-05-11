@@ -1,0 +1,22 @@
+# OS-specific files
+Thumbs.db
+desktop.ini
+
+# IDE folders
+.vscode/
+.idea/
+
+# General temporary files
+*.log
+*.tmp
+*.bak
+
+# Python-related files
+__pycache__/
+*.pyc
+
+# Node.js dependencies
+node_modules/
+
+# Ignore folder named "git"
+git/
