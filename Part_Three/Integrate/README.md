@@ -1,6 +1,6 @@
-# Database Migration Documentation
+## Database Migration Documentation
 
-## Phase 1: Library System Integration (backup-import-preparation.sql)
+### Phase 1: Library System Integration (backup-import-preparation.sql)
 
 ### Purpose
 
@@ -41,7 +41,7 @@ Prepared the existing bookstore database to integrate with an external library s
 
 Successfully merged bookstore and library systems into a single database with dual functionality, maintaining all original bookstore data while adding comprehensive library management capabilities.
 
----
+
 
 ## Phase 2: Schema Unification (complete-database-migration.sql)
 
