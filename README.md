@@ -593,53 +593,38 @@ These two files are like the required Integrate.sql file in the assignment, but 
 [SQL Script Prepare bookstore DB for library data import](./Part_Three/Integrate/prepare-database-import.sql)
 [SQL Script Complete Database Migration](./Part_Three/Integrate/complete-database-migration.sql)
 
-**Phase One – Preparing the Database for Backup Import:**
+#### Phase One – Preparing the Database for Backup Import
 
-In order to enable the import of the backup from the library system, it was necessary to adapt the existing database to the data structure of the new system.  
-This phase is divided into three main parts:
-1. **Structural Preparation**
+To enable the import of the library system backup, I made adjustments to the bookstore database to fit the new data structure. The process included three main parts:
 
-   - **ENUM types matching the fixed values existing in the library system were defined**, changes were made to the names of existing tables and columns to create a full match between the two systems, and new columns were added to existing tables to accommodate additional information expected to be added during the backup import process.  
-     All changes were done ensuring the component does not already exist, to allow safe and repeatable script execution as needed.
+**1. Structural Preparation**
 
-   - **Backup and Constraints Adjustments**
+- ENUM types matching the library’s values were defined, table and column names were changed for full compatibility, and new columns were added to existing tables to handle additional information. Every change was done while checking to prevent duplicates and allow repeated script execution.
 
-     Before making structural changes, the existing tables were backed up to allow recovery in case of failure or error during the merge.  
-     Then the logical relationships (foreign keys) were updated to fit the new table names and structures, while maintaining the consistency of relationships between entities in the system according to the new integration.
+- Existing tables were backed up before structural changes to allow recovery if needed. Foreign key relationships were updated to the new names while maintaining referential integrity between entities.
 
-   - **Creation of New Empty Tables**
+- New empty tables representing entities that exist only in the library system were created to enable direct import of the backup data.
 
-     New empty tables were created matching tables existing only in the library system.  
-     Since these tables did not appear in the bookstore system, they needed to be added in advance to enable the proper and direct integration of imported data during the backup process.
+**2. Data Restoration After Import**
 
-2. **Data Restoration After Backup Import**
+- After importing the backup, missing fields were restored based on existing keys. Validation commands were added to verify data integrity and detect issues early.
 
-   After the backup was imported into the database, it was necessary to restore missing fields based on existing key data.  
-   In addition, validation commands were added to confirm the data loaded correctly into each of the main tables.  
-   This ensured data integrity, adaptation to the new structure, and early detection of problems.
+**3. Cleanup of Backup Tables**
 
-3. **Cleanup of Backup Tables**
+- After verification and approval of system stability, deliberate cleanup of backup tables was performed to maintain a clean and organized database containing only active tables.
 
-   After the integrated system was tested and found stable, a deliberate cleanup of the backup tables was performed.
-   The goal of this phase is to ensure the final database is organized, clean, and includes only the active tables.
-   Cleanup was done only after full verification that the data was restored properly and there was no further need for the backup tables.
+Throughout these stages, the bookstore database was fully adapted to safely and reliably support the import of library data.  
+At this stage, the connection between the two systems was mainly technical — meaning first I wanted to create a database containing all data from the second system with all common tables and import also those that weren’t common, and only afterward begin the necessary fixes and changes to ensure the whole system works correctly also logically.
 
-During the three phases of preparation, restoration, and cleanup, the existing bookstore database was adapted to fully support the import of the library system.  
-Now, after comprehensive preparation, the backup data can be imported confidently — knowing the system is structurally and logically ready for it.
+### Phase Two – Post-Import Adjustments and Optimization
 
-Details regarding the sequence and nature of the commands themselves can be found in the commands file: (the file will be attached here)
+After data import, important changes were made to align the integrated system with the combined design. The commands and fixes executed at this stage aimed to unify the library and bookstore systems more from the logical perspective — ensuring all table relationships are correct, and the entire system operates in a logical and coherent collaboration as one complete and perfect system.
 
-The **Post-import result** is Successfully unified the bookstore and library systems into a single database with dual functionality, preserving all original book data while adding comprehensive library management capabilities.
+The optimizations included saving storage space, preventing duplication, and maintaining data consistency by updating table structures and their relationships through targeted SQL commands.
 
-**Phase Two – Post-Import Adjustments and Optimization:**
+The final result from running these two scripts is a clean, normalized database supporting the combined activity of library and bookstore, with proper inheritance, referential integrity, and scalability for future expansion.
 
-After successfully importing the data from the library system, we performed critical changes to the integrated system to more precisely align it with the combined system design. These changes aimed to save storage space and prevent data duplication while maintaining data consistency. To achieve this, we executed a series of SQL commands to upgrade, fix, and adjust the table structures and their relationships, with the goal of creating an efficient, unified system that best serves the logical and operational needs of the integrated platform.
-
-Details regarding the order and nature of the commands can be found in the commands file: (attached here)
-
-**The Result is** A clean, normalized database supporting unified library-bookstore operations with proper inheritance, referential integrity, and a scalable architecture for future enhancements.
-
-### Conflicts and Dilemmas Encountered During the Work:
+#### Conflicts and Dilemmas Encountered During the Work:
 
 During the integration phase between the **bookstore system** and the **library system**, I encountered several **key challenges** that required **significant decisions** regarding the database structure.
 
@@ -651,10 +636,13 @@ The process also presented **logical challenges**, such as the need to **separat
 
 In summary, the new system created is a **hybrid and integrated system** that efficiently combines the **commercial activity** of the bookstore with **library management**, maintaining **data integrity** and **flexibility** for various purposes, all while solving **complex design problems** that arose during the integration process.
 
-### Views 
+### Views  
+#### View on Bookstore Orders – `CustomerOrderDetails`
 
-#### View 1: CustomerOrderDetails  
-[View Book Store View](./Part_Three/Views/bookStoreView.sql)
+You can view the SQL code that defines this view here: [Book Store View SQL](./Part_Three/Views/bookStoreView.sql)
+
+CSV file showing the **first ten rows** of the view output: [Book Store View Data CSV](./Part_Three/Views/viewDataCSV/bookStoreViewData.csv)
+
 This view consolidates detailed order information from the **original department's perspective** (the bookstore).  
 It combines data about orders, customers, books, authors, genres, and the librarians involved in the order process.
 
@@ -667,11 +655,15 @@ It combines data about orders, customers, books, authors, genres, and the librar
 
 This view supports rich queries to analyze sales, customer behavior, and order fulfillment.
 
-[Book Store View Data CSV](./Part_Three/Views/viewDataCSV/bookStoreViewData.csv)
 ![Book Store View Screenshot](./Part_Three/Views/screenshots/bookStore.png)
 
-#### View 2: BorrowingAndFinesDetails  
-[View Library View](./Part_Three/Views/libraryView.sql)  
+
+#### View on Library Borrowings – `BorrowingAndFinesDetails`
+
+You can view the SQL code that defines this view here: [Library View SQL](./Part_Three/Views/libraryView.sql)
+
+CSV file showing the **first ten rows** of the view output: [Library View Data CSV](./Part_Three/Views/viewDataCSV/libraryViewData.csv)
+
 This view presents detailed information about borrowing transactions and fines from the **receiving department's perspective** (the library).
 
 - Shows borrowing records including borrow number, reader's name, phone, birth date, and membership start date.  
@@ -683,38 +675,41 @@ This view presents detailed information about borrowing transactions and fines f
 
 The view simplifies tracking and management of loans and fines, improving oversight and communication.
 
-[Library View Data CSV](./Part_Three/Views/viewDataCSV/libraryViewData.csv)  
 ![Library View Screenshot](./Part_Three/Views/screenshots/library.png)
+
 
 ### Queries
 
-#### Queries for the Bookstore View (`CustomerOrderDetails`)
+#### Queries for the Bookstore View `CustomerOrderDetails`
 
-Queries on View 1 of the Bookstore System [View Bookstore Queries SQL](./Part_Three/Queries/bookStoreQueries.sql)
+You can view the full SQL script containing all bookstore-related queries here: [View Bookstore Queries SQL](./Part_Three/Queries/bookStoreQueries.sql)
+CSV file showing the **query result** for the top-spending customers: [First Query Bookstore Data CSV](./Part_Three/Queries/viewDataCSV/firstQuerieBookStore.csv)
+CSV file showing the **query result** for the top 20 bestsellers: [Second Query Bookstore Data CSV](./Part_Three/Queries/viewDataCSV/secondQuerieBookStore.csv)
+- Returns customers who spent over 500 in the past year, including their number of orders and total spending, sorted by total spending.
 
-**Query 1**  
-Returns customers who spent over 500 in the past year, including their number of orders and total spending, sorted by total spending.  
-[First Query Bookstore Data CSV](./Part_Three/Queries/viewDataCSV/firstQuerieBookStore.csv)  
 ![First Query Bookstore Screenshot](./Part_Three/Queries/screenshots/firstQuerieBookStore.png)
 
-**Query 2**  
-Returns the top 20 best-selling books in the past year, including the quantity sold and revenue for each book.  
-[Second Query Bookstore Data CSV](./Part_Three/Queries/viewDataCSV/secondQuerieBookStore.csv)  
+- Returns the top 20 best-selling books in the past year, including the quantity sold and revenue for each book.
+
 ![Second Query Bookstore Screenshot](./Part_Three/Queries/screenshots/secondQuerieBookStore.png)
 
----
 
-#### Queries for the Library View (`BorrowingAndFinesDetails`)
-Queries on View 2 of the Library System [View Library Queries SQL](./Part_Three/Queries/libraryQueries.sql)
-**Query 1**  
-Shows readers with overdue books or unpaid fines, including counts of books and fines, total fine amount, and time since first borrow.  
-[First Query Library Data CSV](./Part_Three/Queries/viewDataCSV/firstQuerieLibrary.csv)  
+#### Queries for the Library View `BorrowingAndFinesDetails`
+
+You can view the full SQL script containing all library-related queries here: [View Library Queries SQL](./Part_Three/Queries/libraryQueries.sql)
+
+CSV file showing the **query result** for overdue readers and unpaid fines: [First Query Library Data CSV](./Part_Three/Queries/viewDataCSV/firstQuerieLibrary.csv)
+
+CSV file showing the **query result** for borrowing patterns by age group: [Second Query Library Data CSV](./Part_Three/Queries/viewDataCSV/secondQuerieLibrary.csv)
+
+- Shows readers with overdue books or unpaid fines, including counts of books and fines, total fine amount, and time since first borrow.
+
 ![First Query Library Screenshot](./Part_Three/Queries/screenshots/firstQuerieLibrary.png)
 
-**Query 2**  
-Displays borrowing patterns by age groups over the past year, showing number of readers, total borrows, average borrow duration, and overdue borrows.  
-[Second Query Library Data CSV](./Part_Three/Queries/viewDataCSV/secondQuerieLibrary.csv)  
+- Displays borrowing patterns by age groups over the past year, showing number of readers, total borrows, average borrow duration, and overdue borrows.
+
 ![Second Query Library Screenshot](./Part_Three/Queries/screenshots/secondQuerieLibrary.png)
+
 
 ### Backup Part-Three
 
