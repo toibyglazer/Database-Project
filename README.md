@@ -723,8 +723,7 @@ Display readers who have overdue books or unpaid fines.
    - Groups by reader to count how many books are overdue and how many fines are unpaid.  
    - Sums the total amount owed.  
    - Calculates how long each reader has been active in the system.  
-   - Filters based on borrowing status and fine payment status.  
-Reader name, phone number, number of overdue books, number of unpaid fines, total fines owed, and membership duration.   
+   - Filters based on borrowing status and fine payment status.  Reader name, phone number, number of overdue books, number of unpaid fines, total fines owed, and membership duration.   
 
 ![First Query Library Screenshot](./Part_Three/Queries/screenshots/firstQuerieLibrary.png)
 
@@ -735,8 +734,7 @@ Analyze how different age groups borrow books over the past year.
    - Counts total number of readers and borrows per group.  
    - Calculates the average duration of borrowing (`AVG(return_date - borrow_date)`).  
    - Counts how many of those borrows were overdue.  
-   - Helps identify trends by age demographic.  
-Age group, number of readers, total borrows, average borrow duration, and number of overdue borrows.  
+   - Helps identify trends by age demographic.  Age group, number of readers, total borrows, average borrow duration, and number of overdue borrows.  
 
 ![Second Query Library Screenshot](./Part_Three/Queries/screenshots/secondQuerieLibrary.png)
 
