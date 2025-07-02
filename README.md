@@ -19,7 +19,6 @@ Database Project By Toiby Glazer 326484524 | Semester B, Spring 2025
   - [Rollback and Commit](#rollback-and-commit)  
   - [Backup Part-Two](#backup-part-two) 
 - [Part Three: Integration and Views](#part-three-integration-and-views)
-  - [Overview](#overview)
   - [Library Department ERD & DSD](#library-department-erd--dsd)
   - [Post-Integration ERD & DSD](#post-integration-erd--dsd)
   - [Integration Process and Decisions](#integration-process-and-decisions)
@@ -550,7 +549,7 @@ To ensure data safety and provide disaster recovery capabilities, a comprehensiv
 This backup contains the complete database state, including all tables, constraints, and data as of May 11, 2025. It can be used to restore the database to this point in time if needed.
 
 ## Part Three: Integration and Views
-### Overview
+
 The original system was designed to manage a bookstore, including inventory tracking, order and payment records, and management of sellers and customers. The focus was exclusively on selling books to individual customers.
 
 At this stage, I received a backup of a separate library system and was required to integrate both systems into one unified and logical solution.  
@@ -616,7 +615,7 @@ To enable the import of the library system backup, I made adjustments to the boo
 Throughout these stages, the bookstore database was fully adapted to safely and reliably support the import of library data.  
 At this stage, the connection between the two systems was mainly technical — meaning first I wanted to create a database containing all data from the second system with all common tables and import also those that weren’t common, and only afterward begin the necessary fixes and changes to ensure the whole system works correctly also logically.
 
-### Phase Two – Post-Import Adjustments and Optimization
+#### Phase Two – Post-Import Adjustments and Optimization
 
 After data import, important changes were made to align the integrated system with the combined design. The commands and fixes executed at this stage aimed to unify the library and bookstore systems more from the logical perspective — ensuring all table relationships are correct, and the entire system operates in a logical and coherent collaboration as one complete and perfect system.
 
@@ -683,13 +682,33 @@ The view simplifies tracking and management of loans and fines, improving oversi
 #### Queries for the Bookstore View `CustomerOrderDetails`
 
 You can view the full SQL script containing all bookstore-related queries here: [View Bookstore Queries SQL](./Part_Three/Queries/bookStoreQueries.sql)
-CSV file showing the **query result** for the top-spending customers: [First Query Bookstore Data CSV](./Part_Three/Queries/viewDataCSV/firstQuerieBookStore.csv)
-CSV file showing the **query result** for the top 20 bestsellers: [Second Query Bookstore Data CSV](./Part_Three/Queries/viewDataCSV/secondQuerieBookStore.csv)
-- Returns customers who spent over 500 in the past year, including their number of orders and total spending, sorted by total spending.
+ 
+ CSV file showing the **query result** for the top-spending customers: [First Query Bookstore Data CSV](./Part_Three/Queries/viewDataCSV/firstQuerieBookStore.csv) 
+ CSV file showing the **query result** for the top 20 bestsellers: [Second Query Bookstore Data CSV](./Part_Three/Queries/viewDataCSV/secondQuerieBookStore.csv)
+- **Most Active Customers**
+Display customers who spent more than 500 in the past year.
+
+- Filters only orders from the past year.  
+- Groups results by customer name and email.  
+- Counts the number of orders each customer placed (`COUNT(DISTINCT OrderID)`).  
+- Calculates total amount spent by each customer (`SUM(FinalPrice)`).  
+- Includes only customers who spent more than 500.  
+- Sorts the output by total spending in descending order.
+  
+Customer name, email, number of orders, total amount spent, and membership start year.
 
 ![First Query Bookstore Screenshot](./Part_Three/Queries/screenshots/firstQuerieBookStore.png)
 
-- Returns the top 20 best-selling books in the past year, including the quantity sold and revenue for each book.
+- **Top 20 Best-Selling Books**
+Display the 20 best-selling books in the last year.
+ 
+- Filters orders placed within the past year.  
+- Groups by book title, author name, and genre name.  
+- Sums the total quantity sold for each book (`SUM(BookQuantity)`).  
+- Calculates total revenue per book (`SUM(TotalBookPrice)`).  
+- Returns the top 20 books with the highest sales (`ORDER BY TotalSold DESC LIMIT 20`).
+
+Book title, author name, genre name, total quantity sold, and total revenue.
 
 ![Second Query Bookstore Screenshot](./Part_Three/Queries/screenshots/secondQuerieBookStore.png)
 
@@ -702,11 +721,29 @@ CSV file showing the **query result** for overdue readers and unpaid fines: [Fir
 
 CSV file showing the **query result** for borrowing patterns by age group: [Second Query Library Data CSV](./Part_Three/Queries/viewDataCSV/secondQuerieLibrary.csv)
 
-- Shows readers with overdue books or unpaid fines, including counts of books and fines, total fine amount, and time since first borrow.
+- **Overdue Readers and Unpaid Fines**  
+Display readers who have overdue books or unpaid fines.
+
+- Combines borrow and fine records from the library system.  
+- Groups by reader to count how many books are overdue and how many fines are unpaid.  
+- Sums the total amount owed.  
+- Calculates how long each reader has been active in the system.  
+- Filters based on borrowing status and fine payment status.
+
+Reader name, phone number, number of overdue books, number of unpaid fines, total fines owed, and membership duration.
 
 ![First Query Library Screenshot](./Part_Three/Queries/screenshots/firstQuerieLibrary.png)
 
-- Displays borrowing patterns by age groups over the past year, showing number of readers, total borrows, average borrow duration, and overdue borrows.
+- **Borrowing Patterns by Age Group**  
+Analyze how different age groups borrow books over the past year.
+
+- Groups all borrow records by reader age group.  
+- Counts total number of readers and borrows per group.  
+- Calculates the average duration of borrowing (`AVG(return_date - borrow_date)`).  
+- Counts how many of those borrows were overdue.  
+- Helps identify trends by age demographic.
+
+Age group, number of readers, total borrows, average borrow duration, and number of overdue borrows.
 
 ![Second Query Library Screenshot](./Part_Three/Queries/screenshots/secondQuerieLibrary.png)
 
