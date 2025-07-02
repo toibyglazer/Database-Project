@@ -680,7 +680,10 @@ The view simplifies tracking and management of loans and fines, improving oversi
 
 #### Queries for the Bookstore View `CustomerOrderDetails`
 
-You can view the full SQL script containing all bookstore-related queries here: [View Bookstore Queries SQL](./Part_Three/Queries/bookStoreQueries.sql)   
+You can view the full SQL script containing all bookstore-related queries here: [View Bookstore Queries SQL](./Part_Three/Queries/bookStoreQueries.sql)  
+CSV file showing the **query result** for the top-spending customers: [First Query Bookstore Data CSV](./Part_Three/Queries/viewDataCSV/firstQuerieBookStore.csv)  
+CSV file showing the **query result** for the top 20 bestsellers: [Second Query Bookstore Data CSV](./Part_Three/Queries/viewDataCSV/secondQuerieBookStore.csv) 
+
 **1. Most Active Customers**  
 Display customers who spent more than 500 in the past year.
 
@@ -689,10 +692,8 @@ Display customers who spent more than 500 in the past year.
    - Counts the number of orders each customer placed (`COUNT(DISTINCT OrderID)`).  
    - Calculates total amount spent by each customer (`SUM(FinalPrice)`).  
    - Includes only customers who spent more than 500.  
-   - Sorts the output by total spending in descending order.
-  
+   - Sorts the output by total spending in descending order.  
 Customer name, email, number of orders, total amount spent, and membership start year.  
-CSV file showing the **query result** for the top-spending customers: [First Query Bookstore Data CSV](./Part_Three/Queries/viewDataCSV/firstQuerieBookStore.csv)
 
 ![First Query Bookstore Screenshot](./Part_Three/Queries/screenshots/firstQuerieBookStore.png)
 
@@ -703,17 +704,17 @@ Display the 20 best-selling books in the last year.
    - Groups by book title, author name, and genre name.  
    - Sums the total quantity sold for each book (`SUM(BookQuantity)`).  
    - Calculates total revenue per book (`SUM(TotalBookPrice)`).  
-   - Returns the top 20 books with the highest sales (`ORDER BY TotalSold DESC LIMIT 20`).
-
+   - Returns the top 20 books with the highest sales (`ORDER BY TotalSold DESC LIMIT 20`).  
 Book title, author name, genre name, total quantity sold, and total revenue.  
-CSV file showing the **query result** for the top 20 bestsellers: [Second Query Bookstore Data CSV](./Part_Three/Queries/viewDataCSV/secondQuerieBookStore.csv)
 
 ![Second Query Bookstore Screenshot](./Part_Three/Queries/screenshots/secondQuerieBookStore.png)
 
 
-#### Queries for the Library View `BorrowingAndFinesDetails`
+#### Queries for the Library View `BorrowingAndFinesDetails`  
 
-You can view the full SQL script containing all library-related queries here: [View Library Queries SQL](./Part_Three/Queries/libraryQueries.sql) 
+You can view the full SQL script containing all library-related queries here: [View Library Queries SQL](./Part_Three/Queries/libraryQueries.sql)  
+CSV file showing the **query result** for overdue readers and unpaid fines: [First Query Library Data CSV](./Part_Three/Queries/viewDataCSV/firstQuerieLibrary.csv)  
+CSV file showing the **query result** for borrowing patterns by age group: [Second Query Library Data CSV](./Part_Three/Queries/viewDataCSV/secondQuerieLibrary.csv)  
 
 **1. Overdue Readers and Unpaid Fines**  
 Display readers who have overdue books or unpaid fines.
@@ -722,10 +723,8 @@ Display readers who have overdue books or unpaid fines.
    - Groups by reader to count how many books are overdue and how many fines are unpaid.  
    - Sums the total amount owed.  
    - Calculates how long each reader has been active in the system.  
-   - Filters based on borrowing status and fine payment status.
-
-Reader name, phone number, number of overdue books, number of unpaid fines, total fines owed, and membership duration.  
-CSV file showing the **query result** for overdue readers and unpaid fines: [First Query Library Data CSV](./Part_Three/Queries/viewDataCSV/firstQuerieLibrary.csv) 
+   - Filters based on borrowing status and fine payment status.  
+Reader name, phone number, number of overdue books, number of unpaid fines, total fines owed, and membership duration.   
 
 ![First Query Library Screenshot](./Part_Three/Queries/screenshots/firstQuerieLibrary.png)
 
@@ -736,10 +735,8 @@ Analyze how different age groups borrow books over the past year.
    - Counts total number of readers and borrows per group.  
    - Calculates the average duration of borrowing (`AVG(return_date - borrow_date)`).  
    - Counts how many of those borrows were overdue.  
-   - Helps identify trends by age demographic.
-
+   - Helps identify trends by age demographic.  
 Age group, number of readers, total borrows, average borrow duration, and number of overdue borrows.  
-CSV file showing the **query result** for borrowing patterns by age group: [Second Query Library Data CSV](./Part_Three/Queries/viewDataCSV/secondQuerieLibrary.csv)
 
 ![Second Query Library Screenshot](./Part_Three/Queries/screenshots/secondQuerieLibrary.png)
 
