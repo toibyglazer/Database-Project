@@ -563,21 +563,21 @@ This results in a hybrid system where the bookstore continues selling to private
 
 The system describes a digital library including representations of books, copies, readers, librarians, and authors, along with operations such as borrowing, ordering, and fines. The data is connected through logical relationships enabling comprehensive and accurate tracking of library activities and daily management.
 
-### ERD (Entity-Relationship Diagram)  
-[View ERD Diagram](./PartnerLibraryDiagrams/ERD.png)
+#### ERD (Entity-Relationship Diagram)  
+![ERD Diagram](./Part_Three/PartnerLibraryDiagrams/ERD.png)
 
-### DSD (Data Structure Diagram)  
-[View DSD Diagram](./PartnerLibraryDiagrams/DSD.png)
+#### DSD (Data Structure Diagram)  
+![View DSD Diagram](./Part_Three/PartnerLibraryDiagrams/DSD.png)
 
 ### Post-Integration ERD & DSD
 
 The integrated system, after merging the library system with the bookstore, has been designed and planned following numerous changes and endless discussions on the diagrams above:
 
-### ERD (Entity-Relationship Diagram)  
-[View ERD Diagram](./Part_Three/IntegrationDiagrams/ERD.png)
+#### ERD (Entity-Relationship Diagram)  
+![View ERD Diagram](./Part_Three/IntegrationDiagrams/ERD.png)
 
-### DSD (Data Structure Diagram)  
-[View DSD Diagram](./Part_Three/IntegrationDiagrams/DSD.png)
+#### DSD (Data Structure Diagram)  
+![View DSD Diagram](./Part_Three/IntegrationDiagrams/DSD.png)
 
 ### Integration Process and Decisions
 
@@ -651,9 +651,9 @@ The process also presented **logical challenges**, such as the need to **separat
 
 In summary, the new system created is a **hybrid and integrated system** that efficiently combines the **commercial activity** of the bookstore with **library management**, maintaining **data integrity** and **flexibility** for various purposes, all while solving **complex design problems** that arose during the integration process.
 
-## Views 
+### Views 
 
-### View 1: CustomerOrderDetails  
+#### View 1: CustomerOrderDetails  
 [View Book Store View](./Part_Three/Views/bookStoreView.sql)
 This view consolidates detailed order information from the **original department's perspective** (the bookstore).  
 It combines data about orders, customers, books, authors, genres, and the librarians involved in the order process.
@@ -670,7 +670,7 @@ This view supports rich queries to analyze sales, customer behavior, and order f
 [Book Store View Data CSV](./Part_Three/Views/viewDataCSV/bookStoreViewData.csv)
 ![Book Store View Screenshot](./Part_Three/Views/screenshots/bookStore.png)
 
-### View 2: BorrowingAndFinesDetails  
+#### View 2: BorrowingAndFinesDetails  
 [View Library View](./Part_Three/Views/libraryView.sql)  
 This view presents detailed information about borrowing transactions and fines from the **receiving department's perspective** (the library).
 
@@ -686,9 +686,9 @@ The view simplifies tracking and management of loans and fines, improving oversi
 [Library View Data CSV](./Part_Three/Views/viewDataCSV/libraryViewData.csv)  
 ![Library View Screenshot](./Part_Three/Views/screenshots/library.png)
 
-## Queries
+### Queries
 
-### Queries for the Bookstore View (`CustomerOrderDetails`)
+#### Queries for the Bookstore View (`CustomerOrderDetails`)
 
 Queries on View 1 of the Bookstore System [View Bookstore Queries SQL](./Part_Three/Queries/bookStoreQueries.sql)
 
@@ -704,7 +704,7 @@ Returns the top 20 best-selling books in the past year, including the quantity s
 
 ---
 
-### Queries for the Library View (`BorrowingAndFinesDetails`)
+#### Queries for the Library View (`BorrowingAndFinesDetails`)
 Queries on View 2 of the Library System [View Library Queries SQL](./Part_Three/Queries/libraryQueries.sql)
 **Query 1**  
 Shows readers with overdue books or unpaid fines, including counts of books and fines, total fine amount, and time since first borrow.  
@@ -716,7 +716,7 @@ Displays borrowing patterns by age groups over the past year, showing number of 
 [Second Query Library Data CSV](./Part_Three/Queries/viewDataCSV/secondQuerieLibrary.csv)  
 ![Second Query Library Screenshot](./Part_Three/Queries/screenshots/secondQuerieLibrary.png)
 
-## Backup Part-Three
+### Backup Part-Three
 
 After successfully integrating and unifying the bookstore and library systems into a single, cohesive database, a comprehensive backup was created to ensure data safety and provide disaster recovery capabilities.
 
