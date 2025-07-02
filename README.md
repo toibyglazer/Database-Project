@@ -712,10 +712,8 @@ Book title, author name, genre name, total quantity sold, and total revenue.
 
 #### Queries for the Library View `BorrowingAndFinesDetails`
 
-You can view the full SQL script containing all library-related queries here: [View Library Queries SQL](./Part_Three/Queries/libraryQueries.sql)
-
-CSV file showing the **query result** for overdue readers and unpaid fines: [First Query Library Data CSV](./Part_Three/Queries/viewDataCSV/firstQuerieLibrary.csv)
-
+You can view the full SQL script containing all library-related queries here: [View Library Queries SQL](./Part_Three/Queries/libraryQueries.sql) 
+CSV file showing the **query result** for overdue readers and unpaid fines: [First Query Library Data CSV](./Part_Three/Queries/viewDataCSV/firstQuerieLibrary.csv) 
 CSV file showing the **query result** for borrowing patterns by age group: [Second Query Library Data CSV](./Part_Three/Queries/viewDataCSV/secondQuerieLibrary.csv)
 
 **1. Overdue Readers and Unpaid Fines**  
