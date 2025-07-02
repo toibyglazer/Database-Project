@@ -693,7 +693,8 @@ Display customers who spent more than 500 in the past year.
    - Calculates total amount spent by each customer (`SUM(FinalPrice)`).  
    - Includes only customers who spent more than 500.  
    - Sorts the output by total spending in descending order.  
-Customer name, email, number of orders, total amount spent, and membership start year.  
+
+The result shows a detailed list of customers who were most engaged in purchasing over the past year. For each customer, it includes their name and contact email, the total number of distinct orders they placed, their cumulative spending above 500, and the year they began their membership. This helps identify loyal and high-value customers, enabling targeted marketing or rewards strategies. 
 
 ![First Query Bookstore Screenshot](./Part_Three/Queries/screenshots/firstQuerieBookStore.png)
 
@@ -705,7 +706,8 @@ Display the 20 best-selling books in the last year.
    - Sums the total quantity sold for each book (`SUM(BookQuantity)`).  
    - Calculates total revenue per book (`SUM(TotalBookPrice)`).  
    - Returns the top 20 books with the highest sales (`ORDER BY TotalSold DESC LIMIT 20`).  
-Book title, author name, genre name, total quantity sold, and total revenue.  
+
+This query highlights the most popular books in the store over the past year by aggregating sales data. It shows each book’s title, author, genre, total quantity sold, and the total revenue generated. This insight is valuable for inventory management, promotional planning, and understanding customer preferences.  
 
 ![Second Query Bookstore Screenshot](./Part_Three/Queries/screenshots/secondQuerieBookStore.png)
 
@@ -723,19 +725,22 @@ Display readers who have overdue books or unpaid fines.
    - Groups by reader to count how many books are overdue and how many fines are unpaid.  
    - Sums the total amount owed.  
    - Calculates how long each reader has been active in the system.  
-   - Filters based on borrowing status and fine payment status.  Reader name, phone number, number of overdue books, number of unpaid fines, total fines owed, and membership duration.   
+   - Filters based on borrowing status and fine payment status.  
+
+The output provides detailed information about each reader with outstanding issues: their name and phone number, how many books are currently overdue, the number of unpaid fines, the total amount owed, and the duration of their membership based on their first borrowing date. This overview helps library staff prioritize follow-ups and understand reader behavior regarding returns and fines.   
 
 ![First Query Library Screenshot](./Part_Three/Queries/screenshots/firstQuerieLibrary.png)
 
 **2. Borrowing Patterns by Age Group**  
 Analyze how different age groups borrow books over the past year.
 
-- Groups all borrow records by reader age group.  
-- Counts total number of readers and borrows per group.  
-- Calculates the average duration of borrowing (`AVG(return_date - borrow_date)`).  
-- Counts how many of those borrows were overdue.  
-- Helps identify trends by age demographic. <span style="display:inline-block; margin-left: 10px;">Age group, number of readers, total borrows, average borrow duration, and number of overdue borrows.</span>
-  
+   - Groups all borrow records by reader age group.  
+   - Counts total number of readers and borrows per group.  
+   - Calculates the average duration of borrowing (`AVG(return_date - borrow_date)`).  
+   - Counts how many of those borrows were overdue.  
+   - Helps identify trends by age demographic.  
+
+This analysis highlights borrowing behaviors across different demographics by showing the size of each age group in terms of readers and borrowing activity, the average time books are kept, and the frequency of overdue returns. These insights support library management in tailoring services and outreach efforts to each age group’s needs and habits. 
 
 ![Second Query Library Screenshot](./Part_Three/Queries/screenshots/secondQuerieLibrary.png)
 
