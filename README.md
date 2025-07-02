@@ -730,11 +730,12 @@ Display readers who have overdue books or unpaid fines.
 **2. Borrowing Patterns by Age Group**  
 Analyze how different age groups borrow books over the past year.
 
-   - Groups all borrow records by reader age group.  
-   - Counts total number of readers and borrows per group.  
-   - Calculates the average duration of borrowing (`AVG(return_date - borrow_date)`).  
-   - Counts how many of those borrows were overdue.  
-   - Helps identify trends by age demographic.  Age group, number of readers, total borrows, average borrow duration, and number of overdue borrows.  
+- Groups all borrow records by reader age group.  
+- Counts total number of readers and borrows per group.  
+- Calculates the average duration of borrowing (`AVG(return_date - borrow_date)`).  
+- Counts how many of those borrows were overdue.  
+- Helps identify trends by age demographic. <span style="display:inline-block; margin-left: 10px;">Age group, number of readers, total borrows, average borrow duration, and number of overdue borrows.</span>
+  
 
 ![Second Query Library Screenshot](./Part_Three/Queries/screenshots/secondQuerieLibrary.png)
 
