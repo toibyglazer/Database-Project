@@ -589,8 +589,8 @@ Only after successfully completing the backup import—with all data placed in t
 First, I will attach the two relevant files through which I modified the single database into the integrated database.
 These two files are like the required Integrate.sql file in the assignment, but split into two separate files for convenience.  
 
-### Stage 1: Prepare Database [View Prepare DB Script](./Part_Three/Integrate/prepare-database-import.sql)  
-### Stage 2: Complete Migration [View Complete Migration Script](./Part_Three/Integrate/complete-database-migration.sql)
+**Phase One: Prepare Database [View Prepare DB Script](./Part_Three/Integrate/prepare-database-import.sql)**  
+**Phase Two: Complete Migration [View Complete Migration Script](./Part_Three/Integrate/complete-database-migration.sql)**
 
 
 #### Phase One – Preparing the Database for Backup Import
