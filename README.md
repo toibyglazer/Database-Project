@@ -587,10 +587,11 @@ First, I prepared the bookstore database to optimally import the backup data fro
 Only after successfully completing the backup import—with all data placed in the correct locations, was I able to upgrade and refine the system to the precise logical design I had planned.
 
 First, I will attach the two relevant files through which I modified the single database into the integrated database.
-These two files are like the required Integrate.sql file in the assignment, but split into two separate files for convenience.
+These two files are like the required Integrate.sql file in the assignment, but split into two separate files for convenience.  
 
-[SQL Script Prepare bookstore DB for library data import](./Part_Three/Integrate/prepare-database-import.sql)
-[SQL Script Complete Database Migration](./Part_Three/Integrate/complete-database-migration.sql)
+### Stage 1: Prepare Database [View Prepare DB Script](./Part_Three/Integrate/prepare-database-import.sql)  
+### Stage 2: Complete Migration [View Complete Migration Script](./Part_Three/Integrate/complete-database-migration.sql)
+
 
 #### Phase One – Preparing the Database for Backup Import
 
