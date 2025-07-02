@@ -17,7 +17,16 @@ Database Project By Toiby Glazer 326484524 | Semester B, Spring 2025
     - [Update Queries](#update-queries)  
   - [Constraints](#constraints)  
   - [Rollback and Commit](#rollback-and-commit)  
-  - [Backup Part-Two](#backup-part-two)  
+  - [Backup Part-Two](#backup-part-two) 
+- [Part Three: Integration and Views](#part-three-integration-and-views)
+  - [Overview](#overview)
+  - [Library Department ERD & DSD](#library-department-erd--dsd)
+  - [Post-Integration ERD & DSD](#post-integration-erd--dsd)
+  - [Integration Process and Decisions](#integration-process-and-decisions)
+  - [Views](#views)
+  - [Queries](#queries)
+  - [Backup Part-Three](#backup-part-three)
+
 ## Part One: Design and Build the Database
 ### Introduction
 The **Bookstore Management System Database** is designed to efficiently manage information related to books, customers, librarians, authors, and sales transactions. This comprehensive system ensures smooth organization and tracking of essential details such as inventory management, customer memberships, book categorization, and sales history.
@@ -540,4 +549,179 @@ To ensure data safety and provide disaster recovery capabilities, a comprehensiv
 
 This backup contains the complete database state, including all tables, constraints, and data as of May 11, 2025. It can be used to restore the database to this point in time if needed.
 
+## Part Three: Integration and Views
+### Overview
+The original system was designed to manage a bookstore, including inventory tracking, order and payment records, and management of sellers and customers. The focus was exclusively on selling books to individual customers.
 
+At this stage, I received a backup of a separate library system and was required to integrate both systems into one unified and logical solution.  
+I began by considering how to conceptually combine the library system with the bookstore. The chosen approach was to treat the bookstore as a supplier of books to the library, while still serving private customers.
+
+The library, on the other hand, manages its own borrowing system, but can request books from the bookstore as new reader demands arise.  
+This results in a hybrid system where the bookstore continues selling to private customers but also acts as an official supplier to the library—enabling partial, coordinated data sharing between the two domains.
+
+### Library Department ERD & DSD
+
+The system describes a digital library including representations of books, copies, readers, librarians, and authors, along with operations such as borrowing, ordering, and fines. The data is connected through logical relationships enabling comprehensive and accurate tracking of library activities and daily management.
+
+### ERD (Entity-Relationship Diagram)  
+[View ERD Diagram](./PartnerLibraryDiagrams/ERD.png)
+
+### DSD (Data Structure Diagram)  
+[View DSD Diagram](./PartnerLibraryDiagrams/DSD.png)
+
+### Post-Integration ERD & DSD
+
+The integrated system, after merging the library system with the bookstore, has been designed and planned following numerous changes and endless discussions on the diagrams above:
+
+### ERD (Entity-Relationship Diagram)  
+[View ERD Diagram](./Part_Three/IntegrationDiagrams/ERD.png)
+
+### DSD (Data Structure Diagram)  
+[View DSD Diagram](./Part_Three/IntegrationDiagrams/DSD.png)
+
+### Integration Process and Decisions
+
+The creation of the final database was carried out through a step-by-step renovation and correction of my existing bookstore database. The workflow was divided into two main stages:
+
+First, I prepared the bookstore database to optimally import the backup data from the library system. This involved careful handling of identical tables to ensure that the values from both the existing data and the backup would be properly merged. This process included creating new columns, renaming tables, and creating empty tables to receive data from the new backup.
+
+Only after successfully completing the backup import—with all data placed in the correct locations, was I able to upgrade and refine the system to the precise logical design I had planned.
+
+First, I will attach the two relevant files through which I modified the single database into the integrated database.
+These two files are like the required Integrate.sql file in the assignment, but split into two separate files for convenience.
+
+[SQL Script Prepare bookstore DB for library data import](./Part_Three/Integrate/prepare-database-import.sql)
+[SQL Script Complete Database Migration](./Part_Three/Integrate/complete-database-migration.sql)
+
+**Phase One – Preparing the Database for Backup Import:**
+
+In order to enable the import of the backup from the library system, it was necessary to adapt the existing database to the data structure of the new system.  
+This phase is divided into three main parts:
+1. **Structural Preparation**
+
+   - **ENUM types matching the fixed values existing in the library system were defined**, changes were made to the names of existing tables and columns to create a full match between the two systems, and new columns were added to existing tables to accommodate additional information expected to be added during the backup import process.  
+     All changes were done ensuring the component does not already exist, to allow safe and repeatable script execution as needed.
+
+   - **Backup and Constraints Adjustments**
+
+     Before making structural changes, the existing tables were backed up to allow recovery in case of failure or error during the merge.  
+     Then the logical relationships (foreign keys) were updated to fit the new table names and structures, while maintaining the consistency of relationships between entities in the system according to the new integration.
+
+   - **Creation of New Empty Tables**
+
+     New empty tables were created matching tables existing only in the library system.  
+     Since these tables did not appear in the bookstore system, they needed to be added in advance to enable the proper and direct integration of imported data during the backup process.
+
+2. **Data Restoration After Backup Import**
+
+   After the backup was imported into the database, it was necessary to restore missing fields based on existing key data.  
+   In addition, validation commands were added to confirm the data loaded correctly into each of the main tables.  
+   This ensured data integrity, adaptation to the new structure, and early detection of problems.
+
+3. **Cleanup of Backup Tables**
+
+   After the integrated system was tested and found stable, a deliberate cleanup of the backup tables was performed.
+   The goal of this phase is to ensure the final database is organized, clean, and includes only the active tables.
+   Cleanup was done only after full verification that the data was restored properly and there was no further need for the backup tables.
+
+During the three phases of preparation, restoration, and cleanup, the existing bookstore database was adapted to fully support the import of the library system.  
+Now, after comprehensive preparation, the backup data can be imported confidently — knowing the system is structurally and logically ready for it.
+
+Details regarding the sequence and nature of the commands themselves can be found in the commands file: (the file will be attached here)
+
+The **Post-import result** is Successfully unified the bookstore and library systems into a single database with dual functionality, preserving all original book data while adding comprehensive library management capabilities.
+
+**Phase Two – Post-Import Adjustments and Optimization:**
+
+After successfully importing the data from the library system, we performed critical changes to the integrated system to more precisely align it with the combined system design. These changes aimed to save storage space and prevent data duplication while maintaining data consistency. To achieve this, we executed a series of SQL commands to upgrade, fix, and adjust the table structures and their relationships, with the goal of creating an efficient, unified system that best serves the logical and operational needs of the integrated platform.
+
+Details regarding the order and nature of the commands can be found in the commands file: (attached here)
+
+**The Result is** A clean, normalized database supporting unified library-bookstore operations with proper inheritance, referential integrity, and a scalable architecture for future enhancements.
+
+### Conflicts and Dilemmas Encountered During the Work:
+
+During the integration phase between the **bookstore system** and the **library system**, I encountered several **key challenges** that required **significant decisions** regarding the database structure.
+
+First, I realized that the **table names and structures** in the two systems did **not match** each other, so **adjustments and renaming** were necessary to **prevent conflicts** when merging the data. For example, the **`Librarian`** table was renamed to **`Seller`** to accurately reflect the role of users in the integrated system, and the corresponding column in the **`Orders`** table was also renamed accordingly. Additionally, in the library system, some tables had **missing or different columns**, so I added the **necessary columns** to existing tables to allow **full preservation** of all backup data, while carefully checking for the existence of columns to avoid issues when running scripts repeatedly.
+
+Furthermore, **new tables missing** from the bookstore system were added, such as **`Reader`**, **`Borrow`**, and **`Fine`**, which are essential for managing loans and fines in the library. This created a **new layer** that integrates library operations within the expanded system. At the same time, I **consolidated existing tables** with similar content, successfully **reducing duplication** and **improving the underlying logic** of the data — for example, unifying the link tables between books and authors and genres.
+
+The process also presented **logical challenges**, such as the need to **separate different roles** of people in the system (**readers, sellers, librarians, authors**). Therefore, I created a **hierarchy of tables** based on a single **`Person`** parent table, from which specialized tables inherit. This decision significantly improved **data management** and **consistency**, as well as facilitating **future system extensions**.
+
+In summary, the new system created is a **hybrid and integrated system** that efficiently combines the **commercial activity** of the bookstore with **library management**, maintaining **data integrity** and **flexibility** for various purposes, all while solving **complex design problems** that arose during the integration process.
+
+## Views 
+
+### View 1: CustomerOrderDetails  
+[View Book Store View](./Part_Three/Views/bookStoreView.sql)
+This view consolidates detailed order information from the **original department's perspective** (the bookstore).  
+It combines data about orders, customers, books, authors, genres, and the librarians involved in the order process.
+
+- Displays order ID, date, final price, customer name and email, membership discount and start year.  
+- Shows book details including title, author, genre, quantity ordered, price per book, and total price for the quantity.  
+- Includes librarian’s name responsible for the order (if assigned).  
+- Uses multiple JOINs to gather related information across tables.  
+- A LEFT JOIN is used for librarian data to ensure orders without assigned librarians still appear.  
+- Calculates the total book price per order item to assist revenue analysis.
+
+This view supports rich queries to analyze sales, customer behavior, and order fulfillment.
+
+[Book Store View Data CSV](./Part_Three/Views/viewDataCSV/bookStoreViewData.csv)
+![Book Store View Screenshot](./Part_Three/Views/screenshots/bookStore.png)
+
+### View 2: BorrowingAndFinesDetails  
+[View Library View](./Part_Three/Views/libraryView.sql)  
+This view presents detailed information about borrowing transactions and fines from the **receiving department's perspective** (the library).
+
+- Shows borrowing records including borrow number, reader's name, phone, birth date, and membership start date.  
+- Includes borrowing and return dates, plus a calculated status: 'Overdue', 'Returned', or 'Active'.  
+- Lists related fines with reason, amount, payment status, and fine date.  
+- Provides librarian contact info overseeing the borrowing and fine management.  
+- Uses JOINs to combine data from Borrow, Reader, Person, Librarian, and Fine tables.  
+- Uses a LEFT JOIN on fines to include borrowings without fines.
+
+The view simplifies tracking and management of loans and fines, improving oversight and communication.
+
+[Library View Data CSV](./Part_Three/Views/viewDataCSV/libraryViewData.csv)  
+![Library View Screenshot](./Part_Three/Views/screenshots/library.png)
+
+## Queries
+
+### Queries for the Bookstore View (`CustomerOrderDetails`)
+
+Queries on View 1 of the Bookstore System [View Bookstore Queries SQL](./Part_Three/Queries/bookStoreQueries.sql)
+
+**Query 1**  
+Returns customers who spent over 500 in the past year, including their number of orders and total spending, sorted by total spending.  
+[First Query Bookstore Data CSV](./Part_Three/Queries/viewDataCSV/firstQuerieBookStore.csv)  
+![First Query Bookstore Screenshot](./Part_Three/Queries/screenshots/firstQuerieBookStore.png)
+
+**Query 2**  
+Returns the top 20 best-selling books in the past year, including the quantity sold and revenue for each book.  
+[Second Query Bookstore Data CSV](./Part_Three/Queries/viewDataCSV/secondQuerieBookStore.csv)  
+![Second Query Bookstore Screenshot](./Part_Three/Queries/screenshots/secondQuerieBookStore.png)
+
+---
+
+### Queries for the Library View (`BorrowingAndFinesDetails`)
+Queries on View 2 of the Library System [View Library Queries SQL](./Part_Three/Queries/libraryQueries.sql)
+**Query 1**  
+Shows readers with overdue books or unpaid fines, including counts of books and fines, total fine amount, and time since first borrow.  
+[First Query Library Data CSV](./Part_Three/Queries/viewDataCSV/firstQuerieLibrary.csv)  
+![First Query Library Screenshot](./Part_Three/Queries/screenshots/firstQuerieLibrary.png)
+
+**Query 2**  
+Displays borrowing patterns by age groups over the past year, showing number of readers, total borrows, average borrow duration, and overdue borrows.  
+[Second Query Library Data CSV](./Part_Three/Queries/viewDataCSV/secondQuerieLibrary.csv)  
+![Second Query Library Screenshot](./Part_Three/Queries/screenshots/secondQuerieLibrary.png)
+
+## Backup Part-Three
+
+After successfully integrating and unifying the bookstore and library systems into a single, cohesive database, a comprehensive backup was created to ensure data safety and provide disaster recovery capabilities.
+
+This backup includes the entire state of the combined system, capturing all merged and synchronized data from both the original library and bookstore systems after integration.
+
+**Data Backup File** [View Backup File](./Part_Three/Backup/backup3.backup)
+
+This backup contains all tables, constraints, and integrated data reflecting the unified system, ready for restoration if needed.
