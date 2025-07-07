@@ -25,6 +25,17 @@ Database Project By Toiby Glazer 326484524 | Semester B, Spring 2025
   - [Views](#views)
   - [Queries](#queries)
   - [Backup Part-Three](#backup-part-three)
+- [Part Four: Functions, Procedures, Triggers & Main Program Execution](#part-four-functions-procedures-triggers--main-program-execution)
+  - [Functions](#functions)
+  - [Procedures](#procedures)
+  - [Triggers](#triggers)
+  - [Main Programs](#main-programs)
+    - [Main Program 1: Book Borrowing](#main-program-1-book-borrowing)
+    - [Main Program 2: Ordering from the Bookstore](#main-program-2-ordering-from-the-bookstore)
+  - [Demonstration Screenshots](#demonstration-screenshots)
+  -[PL/pgSQL Exceptions](#pl/pgsql-exceptions)
+  - [Backup Part-Four](#backup-part-four)
+
 
 ## Part One: Design and Build the Database
 ### Introduction
@@ -655,7 +666,9 @@ It combines data about orders, customers, books, authors, genres, and the librar
 
 This view supports rich queries to analyze sales, customer behavior, and order fulfillment.
 
-![Book Store View Screenshot](./Part_Three/Views/screenshots/bookStore.png)
+<div align="center">
+  <img src="./Part_Three/Views/screenshots/bookStore.png" width="900" />
+</div>
 
 
 #### View 2: On Library Borrowings  `BorrowingAndFinesDetails`
@@ -674,7 +687,10 @@ This view presents detailed information about borrowing transactions and fines f
 
 The view simplifies tracking and management of loans and fines, improving oversight and communication.
 
-![Library View Screenshot](./Part_Three/Views/screenshots/library.png)
+<div align="center">
+  <img src="./Part_Three/Views/screenshots/library.png" width="900" />
+</div>
+
 
 
 ### Queries
@@ -697,7 +713,10 @@ Display customers who spent more than 500 in the past year.
 
 The result shows a detailed list of customers who were most engaged in purchasing over the past year. For each customer, it includes their name and contact email, the total number of distinct orders they placed, their cumulative spending above 500, and the year they began their membership. This helps identify loyal and high-value customers, enabling targeted marketing or rewards strategies. 
 
-![First Query Bookstore Screenshot](./Part_Three/Queries/screenshots/firstQuerieBookStore.png)
+<div align="center">
+  <img src="./Part_Three/Queries/screenshots/firstQuerieBookStore.png" width="900" />
+</div>
+
 
 **2. Top 20 Best-Selling Books**  
 Display the 20 best-selling books in the last year.
@@ -710,7 +729,10 @@ Display the 20 best-selling books in the last year.
 
 This query highlights the most popular books in the store over the past year by aggregating sales data. It shows each book’s title, author, genre, total quantity sold, and the total revenue generated. This insight is valuable for inventory management, promotional planning, and understanding customer preferences.  
 
-![Second Query Bookstore Screenshot](./Part_Three/Queries/screenshots/secondQuerieBookStore.png)
+<div align="center">
+  <img src="./Part_Three/Queries/screenshots/secondQuerieBookStore.png" width="900" />
+</div>
+
 
 
 #### Queries for the Library View `BorrowingAndFinesDetails`  
@@ -730,7 +752,9 @@ Display readers who have overdue books or unpaid fines.
 
 The output provides detailed information about each reader with outstanding issues: their name and phone number, how many books are currently overdue, the number of unpaid fines, the total amount owed, and the duration of their membership based on their first borrowing date. This overview helps library staff prioritize follow-ups and understand reader behavior regarding returns and fines.   
 
-![First Query Library Screenshot](./Part_Three/Queries/screenshots/firstQuerieLibrary.png)
+<div align="center">
+  <img src="./Part_Three/Queries/screenshots/firstQuerieLibrary.png" width="900" />
+</div>
 
 **2. Borrowing Patterns by Age Group**  
 Analyze how different age groups borrow books over the past year.
@@ -743,7 +767,11 @@ Analyze how different age groups borrow books over the past year.
 
 This analysis highlights borrowing behaviors across different demographics by showing the size of each age group in terms of readers and borrowing activity, the average time books are kept, and the frequency of overdue returns. These insights support library management in tailoring services and outreach efforts to each age group’s needs and habits. 
 
-![Second Query Library Screenshot](./Part_Three/Queries/screenshots/secondQuerieLibrary.png)
+<div align="center">
+  <img src="./Part_Three/Queries/screenshots/secondQuerieLibrary.png" width="900" />
+</div>
+
+
 
 ### Backup Part-Three
 
@@ -754,3 +782,293 @@ This backup includes the entire state of the combined system, capturing all merg
 **Data Backup File** [View Backup File](./Part_Three/Backup/backup3.backup)
 
 This backup contains all tables, constraints, and integrated data reflecting the unified system, ready for restoration if needed.
+
+## Part Four: Functions, Procedures, Triggers & Main Program Execution
+In this stage, we focused on writing advanced PL/pgSQL programs based on the database built in previous stages. The programs include functions, procedures, triggers, and main programs that simulate client-side operations. The goal of this stage was to implement complex logic on the database using programming elements such as conditions, loops, exception handling, records, and cursors.
+
+The files are organized into folders by program type, each accompanied by a corresponding SQL file, documentation, and proof of successful execution.
+### Functions
+The file containing all functions can be found here [Functions](./Part_Four/SQL/functions.sql).
+
+Below is a brief explanation of each function:
+
+1. #### `get_all_available_copies()`  
+   **Retrieve All Available Copies in the Library**
+
+   This function returns all physical copies in the library that are currently available (i.e., not borrowed).  
+It returns a table with details about the book, the copy, language, shelf location, and the condition of the copy.  
+Data is retrieved from multiple tables and filtered to include only copies that are not currently loaned out.
+
+2. #### `check_book_availability(book_id INTEGER)`  
+   **Check Book Availability by Book ID**
+
+   This function takes a book ID and checks how many available copies exist in the library.  
+   It uses a cursor to return all available copies with details on their location and condition.  
+   If the book is not found or no copies are available, appropriate notices are raised.
+
+3. #### `get_book_borrowers(book_id INTEGER)`  
+   **Get List of Current Borrowers for a Specific Book**
+
+   This function returns a list of all readers who currently have copies of a specific book borrowed and not yet returned.  
+   It shows information about the reader, loan and expected return dates, and the number of days overdue if applicable.  
+   Exception handling is included for cases when the book is not found or no active loans exist.
+
+4. #### `get_top_selling_books()`  
+   **Retrieve Top Ten Best-Selling Books**
+
+   This function returns the top ten best-selling books based on the number of copies sold and total revenue.  
+   It uses a cursor to loop through the sales data and ranks books accordingly.  
+   If no sales data is found, a notice is raised.
+
+
+### Procedures
+The file containing all procedures can be found here [Procedures](./Part_Four/SQL/procedures.sql).
+
+Below is a brief explanation of each procedure:
+
+1. #### `proc_borrow_specific_copy(p_reader_id INTEGER, p_library_copy_id INTEGER)`  
+   **Borrow a Specific Library Copy**
+
+   This procedure allows a reader to borrow a specific library copy, identified by its LibraryCopyID.
+   Before proceeding, it checks whether the selected copy is already borrowed and not yet returned.
+   If the copy is currently unavailable, an exception is raised.
+   Otherwise, a borrow record is created and the copy is linked to that transaction.
+
+2. #### `proc_place_multi_book_order(p_customer_id INTEGER, p_booklanguage_ids INTEGER[], p_quantities INTEGER[])`  
+   **Place a Multi-Book Order**
+
+   This procedure creates a new order for a customer that can include multiple books with specified quantities.  
+   It validates that the arrays of book IDs and quantities match in length, checks stock availability for each book, and adds them to the order.  
+   The total price is calculated and updated in the Orders table.  
+   If stock is insufficient or a book is not found, appropriate exceptions are raised.  
+   On success, a notice with the order ID and total price is displayed.
+
+
+### Triggers
+
+The file containing all triggers can be found here [Triggers](./Part_Four/SQL/triggers.sql).
+
+Below is a brief explanation of each trigger:
+
+1. #### `trg_update_reader_books()` (trigger function)  
+   **Update Reader’s Number of Borrowed Books**
+
+   This trigger function automatically increments the `numTakenBooks` field in the `Reader` table whenever a new borrowing entry is inserted.  
+   It ensures the count of books currently borrowed by the reader is updated after an insert into the `Borrowed` table.  
+   The associated trigger `trg_after_borrow_insert` fires **after insert** on the `Borrowed` table to execute this function.
+
+2. #### `trg_update_inventory_after_order()` (trigger function)  
+   **Update Inventory After New Order Item**
+
+   This trigger function updates the bookstore inventory by subtracting the quantity of a newly ordered book from the stock.  
+   It is executed after an insert on the `OrderItem` table via the trigger `trg_after_orderitem_insert`.  
+   This keeps the inventory stock accurate and reflects items sold.  
+   (Optional validation to prevent negative stock levels can be added.)
+
+### Main Programs
+#### Main Program 1: Book Borrowing
+You can view the first main program code here [main_borrow_interactive.sql](./Part_Four/MainPrograms/mainFirst.sql)  
+This main procedure guides the process of borrowing a book from the library in five continuous steps:
+
+**1.** The program begins by prompting the user to enter the Book ID they wish to borrow and their Reader ID. In this implementation, the inputs are simulated (hardcoded) rather than dynamically entered by the user.
+
+**2.** It then checks whether any available copies of the requested book exist by calling the function [`check_book_availability`](#check_book_availabilitybook_id-integer). This function searches the database for copies of the specified book that are not currently borrowed. The procedure counts the returned rows to determine availability.
+
+**3.** If copies are available, the user is shown a list of all available copies with detailed information, such as language, condition, shelf, floor, and row. This information is again retrieved using [`check_book_availability`](#check_book_availabilitybook_id-integer). The user is then prompted to choose a specific copy by its LibraryCopyID, and the corresponding BookLanguageID is retrieved from the `LibraryCopy` table.
+
+**4.** The procedure proceeds to call [`proc_borrow_book_by_lang_id`](#proc_borrow_book_by_lang_idp_reader_id-integer-p_booklanguage_id-integer), which performs the actual borrowing process. It assigns the selected book copy to the reader and inserts a new borrow record into the system. Following this step, the trigger [`trg_update_reader_books`](#trg_update_reader_books-trigger-function) is automatically fired, updating the reader’s `numTakenBooks` count in the `Reader` table.
+
+**5.** If no copies are available, the procedure calls the function [`get_book_borrowers`](#get_book_borrowersbook_id-integer) to retrieve information about current borrowers of that book. It then prints details such as the borrower's name, borrow date, and days overdue (if applicable), and informs the user that they will be notified once a copy becomes available.
+
+#### Summary
+
+This main program acts as the interactive core of the borrowing system. It checks for available copies, guides the user through the selection process, initiates the borrowing operation, and ensures that all relevant tables and triggers are updated accordingly. In cases of unavailability, it provides transparency into current loans, offering a clear and helpful user experience.
+
+#### Main Program 2: Ordering from the Bookstore
+You can view the code for the second main program here [main_order_books.sql](./Part_Four/MainPrograms/mainSecond.sql)  
+This main procedure allows a customer to place an order for one or more books from the bookstore. The process unfolds in five continuous steps:
+
+**1.** The procedure starts by displaying a list of the top 10 best-selling books using the function [`get_top_selling_books`](#get_top_selling_books). The list includes rank, book title, author, total copies sold, and total revenue, giving the customer a quick overview of popular choices.
+
+**2.** The user is then prompted to enter their Customer ID. This ID is used to associate the order with the correct customer in the system. (In this version, the ID is hardcoded for demonstration purposes.)
+
+**3.** A new order record is created in the `Orders` table with today's date, order type, a starting total price of 0, the seller ID, and the provided customer ID. The newly created `OrderID` is saved for use in the next steps.
+
+**4.** The program enters a loop that enables the customer to add multiple books to the order. For each item:
+   - The customer is asked to enter the `BookLanguageID` of the book they want to order.
+   - The program checks stock availability from the `BookstoreInventory`.
+   - If the stock is sufficient, the user specifies the quantity they want.
+   - The quantity is validated against the stock, and if it's valid, an entry is added to the `OrderItem` table.
+   - At this point, the trigger [`trg_update_inventory_after_order`](#trg_update_inventory_after_order-trigger-function) is automatically activated, reducing the available stock accordingly.
+   - The customer is then asked if they wish to add another item to the order.
+
+**5.** After all items have been added, the program calculates the final total price for the order. This is done by summing up the quantity of each item multiplied by its unit price, taken from the `BookstoreInventory`. The result is stored back in the `Orders` table under `FinalPrice`. Finally, a message confirms the successful completion of the order and displays the order number.
+
+#### Summary
+
+This main program simulates a dynamic and interactive ordering system for the bookstore. It presents top-selling books to the customer, creates a new order, allows adding multiple books with quantity validation, and ensures that the stock is accurately updated through a trigger. In the end, it updates the order’s total price, completing a smooth and traceable purchase flow.
+
+
+### Demonstration Screenshots
+Below are screenshots demonstrating the execution of the `main_place_order_interactive` procedure:
+#### Main Program 1: Book Borrowing
+
+We inserted fixed values instead of real user input for testing purposes.
+We simulated a reader with ReaderID = 30 wanting to borrow a book with BookID = 343.
+The program checked and displayed available copies of that book in the library.
+The reader selected the copy with LibraryCopyID = 405.
+The borrow transaction was successfully created.
+
+ - The Borrow and Borrowed tables were updated accordingly after the procedure executed.  
+ - The reader's NumTakenBooks counter was automatically updated by a trigger.  
+ - If no copies were available, the program displayed the current borrowers with borrow dates and overdue information.  
+ - If the reader tries to borrow more books than their limit, an exception is raised and the borrow is rejected.  
+<!-- עטיפה כוללת ברוחב קבוע ומרכז -->
+<div style="width: 1000px; margin: auto;">
+
+  <!-- שתי התמונות הראשונות בשורה אחת, באותו גובה, במרכז ובמרווח בין -->
+  <div style="display: flex; justify-content: center; gap: 20px; align-items: center; margin-bottom: 20px;">
+    <img src="./Part_Four/Screenshots/RunningFirstMainProgram/CopiesAvailable.png" alt="Copies Available" style="height: 700px; object-fit: contain;">
+    <img src="./Part_Four/Screenshots/RunningFirstMainProgram/CopiesUnavailable.png" alt="Copies Unavailable" style="height: 700px; object-fit: contain;">
+  </div>
+
+  <!-- שאר התמונות כל אחת בשורה משלה, רחבות למקסימום ומרכזיות -->
+  <div style="display: flex; flex-direction: column; gap: 20px; align-items: center;">
+    <img src="./Part_Four/Screenshots/RunningFirstMainProgram/BorrowAfter.png" alt="Borrow After" style="max-width: 100%; height: auto;">
+    <img src="./Part_Four/Screenshots/RunningFirstMainProgram/BorrowedAfter.png" alt="Borrowed After" style="max-width: 100%; height: auto;">
+    <img src="./Part_Four/Screenshots/RunningFirstMainProgram/NumTakenBooksBefore.png" alt="Num Taken Books Before" style="max-width: 100%; height: auto;">
+    <img src="./Part_Four/Screenshots/RunningFirstMainProgram/NumTakenBooksAfter.png" alt="Num Taken Books After" style="max-width: 100%; height: auto;">
+    <img src="./Part_Four/Screenshots/RunningFirstMainProgram/BookLimitExeption.png" alt="Book Limit Exception" style="max-width: 100%; height: auto;">
+  </div>
+
+</div>
+
+#### Main Program 2: Ordering from the Bookstore  
+We inserted fixed values instead of real user input for testing purposes.  
+We simulated an order for book with `BookLanguageID = 302`.  
+As shown in the run, 41 copies of this book were available in stock.  
+We requested 12 copies for our order. That was all we wanted to order, and the order was placed successfully.
+- In the `OrderItem` and `Orders` tables after the procedure executed.
+- And in the `BookstoreInventory` table after the trigger automatically reduced the stock.  
+
+<!-- עטיפה משותפת עם רוחב קבוע של 300px -->
+<div style="width: 1000px; margin: auto;">
+
+  <!-- התמונה העליונה, תופסת את כל הרוחב -->
+  <img src="./Part_Four/Screenshots/RunningSecondMainProgram/successfulRun.png" alt="Successful order run" style="width: 100%; margin-bottom: 10px;">
+
+  <!-- שתי התמונות יחד, כל אחת חצי מהרוחב -->
+  <div style="display: flex; gap: 5px;">
+    <img src="./Part_Four/Screenshots/RunningSecondMainProgram/ordersAfterRunning.png" alt="Orders table after run" style="width: 70%;">
+    <img src="./Part_Four/Screenshots/RunningSecondMainProgram/orderItemAfterExecution.png" alt="OrderItem table after run" style="width: 30%;">
+  </div>
+
+</div>
+
+### PL/pgSQL Exceptions
+1. **check_book_availability - Book not found in library**  
+Explanation: Ensures the book exists before returning available copies.  
+    ```plpgsql
+    RAISE EXCEPTION 'Book with ID % not found in library', book_id;
+   ```
+2. **check_book_availability - No copies available**  
+Explanation: Indicates no available copies because all are currently borrowed, returns no results.  
+     ```plpgsql
+      RAISE NOTICE 'No copies available for book ID % - all copies are currently borrowed', book_id;
+      RETURN;
+      ```
+3. **check_book_availability - General error handling**  
+Explanation: Catches any unexpected errors and reports them.
+      ```plpgsql
+      EXCEPTION
+    WHEN OTHERS THEN
+        RAISE NOTICE 'Error in check_book_availability: %', SQLERRM;
+        RAISE;
+      ```
+4. **get_book_borrowers - Book not found**  
+Explanation: Checks if the book exists before returning borrower info.
+   ```plpgsql
+      RAISE EXCEPTION 'Book with ID % not found', book_id;
+      ```
+5. **get_book_borrowers - No active borrowers**  
+Explanation: Indicates there are no active borrowers currently.
+    ```plpgsql
+     RAISE NOTICE 'No current borrowers found for book ID: %', book_id;
+     RETURN;
+      ```
+6. **get_book_borrowers - General error handling**  
+Explanation: Catches and reports errors.
+     ```plpgsql
+    EXCEPTION
+    WHEN OTHERS THEN
+        RAISE NOTICE 'Error in get_book_borrowers: %', SQLERRM;
+        RAISE;
+      ```
+7. **get_top_selling_books - No sales data**  
+Explanation: Indicates no sales data is available in the system.
+   ```plpgsql
+   RAISE NOTICE 'No sales data found in the system';
+   RETURN;
+   ```
+8. **get_top_selling_books - No books with sales data found**  
+Explanation: Indicates no books were found with sales information.
+   ```plpgsql
+   RAISE NOTICE 'No books found with sales data';
+   ```
+9. **get_top_selling_books - General error handling**  
+Explanation: Catches any unexpected errors and reports them.
+    ```plpgsql
+    EXCEPTION
+    WHEN OTHERS THEN
+        RAISE NOTICE 'Error in get_top_selling_books: %', SQLERRM;
+        RAISE;
+    ```
+10. **proc_borrow_specific_copy - Copy already borrowed**  
+Explanation: Prevents borrowing a copy that is currently on loan.
+    ```plpgsql
+    RAISE EXCEPTION 'This copy is already borrowed.';
+    ```
+11. **proc_place_multi_book_order - Array length mismatch**  
+Explanation: Ensures the order parameters arrays have matching lengths.
+    ```plpgsql 
+    RAISE EXCEPTION 'BookLanguageID array and quantity array must be of the same length';
+     ```
+12. **proc_place_multi_book_order - Book not found in inventory**  
+Explanation: Prevents adding an item not present in stock.
+     ```plpgsql 
+     RAISE EXCEPTION 'BookLanguageID % not found in inventory', p_booklanguage_ids[i];
+     ```
+13. **proc_place_multi_book_order - Insufficient stock**  
+Explanation: Prevents ordering quantity greater than available stock.
+    ```plpgsql
+    RAISE EXCEPTION 'Not enough stock for BookLanguageID %: Available %, Requested %',
+    p_booklanguage_ids[i], v_stock, p_quantities[i];
+    ```
+14. **main_place_order_interactive - Error handling during order**  
+Explanation: Reports error, cancels order, and stops loop.
+    ```plpgsql
+     EXCEPTION
+     WHEN OTHERS THEN
+        RAISE NOTICE 'Error: %', SQLERRM;
+        RAISE NOTICE 'Order cancelled due to error.';
+        v_continue := FALSE;
+        v_error_occurred := TRUE;
+       ```
+15. **main_borrow_interactive - No available copies**  
+Explanation: Notifies no available copies and shows current borrowers. 
+     ```plpgsql 
+     RAISE NOTICE 'No available copies. Showing current borrowers of BookID %:', v_book_id;
+     ```
+
+### Backup Part-Four
+
+After completing the implementation of advanced PL/pgSQL programs — including functions, procedures, triggers, and interactive main programs — a full backup of the enhanced database was created to preserve the current state of the system.
+
+This backup captures all developed logic, code, and structural changes applied during this programming stage, such as:
+- Custom business logic through non-trivial functions and procedures
+- Trigger-based automation for consistent data handling
+- Main programs that simulate real-world scenarios in the system
+
+**Data Backup File** [View Backup File](./Part_Four/Backup/backup4.backup)
+
+This backup reflects the complete and updated version of the extended unified system after all logical and structural enhancements of Part Four.
