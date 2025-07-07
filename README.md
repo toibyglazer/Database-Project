@@ -33,7 +33,7 @@ Database Project By Toiby Glazer 326484524 | Semester B, Spring 2025
     - [Main Program 1: Book Borrowing](#main-program-1-book-borrowing)
     - [Main Program 2: Ordering from the Bookstore](#main-program-2-ordering-from-the-bookstore)
   - [Demonstration Screenshots](#demonstration-screenshots)
-  -[PL/pgSQL Exceptions](#pl/pgsql-exceptions)
+  -[PL/pgSQL Exceptions](#plpgsql-exceptions)
   - [Backup Part-Four](#backup-part-four)
 
 
@@ -951,19 +951,16 @@ We requested 12 copies for our order. That was all we wanted to order, and the o
 - In the `OrderItem` and `Orders` tables after the procedure executed.
 - And in the `BookstoreInventory` table after the trigger automatically reduced the stock.  
 
-<!-- עטיפה משותפת ברוחב קבוע ומרכוז -->
 <div style="width: 1000px; margin: auto;">
 
-  <!-- תמונה עליונה אחת -->
-  <img src="./Part_Four/Screenshots/RunningSecondMainProgram/successfulRun.png" alt="Successful order run" style="width: 100%; margin-bottom: 10px;">
+  <!-- תמונה ראשונה -->
+  <img src="./Part_Four/Screenshots/RunningSecondMainProgram/successfulRun.png" alt="Successful order run" style="width: 100%; margin-bottom: 20px;">
 
-  <!-- שתי תמונות בשורה אחת, עם יחס 70/30 -->
-  <div style="display: flex; flex-wrap: nowrap; gap: 10px;">
-    <img src="./Part_Four/Screenshots/RunningSecondMainProgram/ordersAfterRunning.png" alt="Orders table after run" style="width: 70%; height: auto;">
-    <img src="./Part_Four/Screenshots/RunningSecondMainProgram/orderItemAfterExecution.png" alt="OrderItem table after run" style="width: 30%; height: auto;">
-  </div>
+  <!-- תמונה חדשה אחת, ברוחב מלא -->
+  <img src="./Part_Four/Screenshots/RunningSecondMainProgram/final.png" alt="Final result table" style="width: 100%;">
 
 </div>
+
 
 
 ### PL/pgSQL Exceptions
