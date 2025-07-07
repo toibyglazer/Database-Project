@@ -32,8 +32,8 @@ Database Project By Toiby Glazer 326484524 | Semester B, Spring 2025
   - [Main Programs](#main-programs)
     - [Main Program 1: Book Borrowing](#main-program-1-book-borrowing)
     - [Main Program 2: Ordering from the Bookstore](#main-program-2-ordering-from-the-bookstore)
-  - [Demonstration Screenshots](#demonstration-screenshots)
-  -[PL/pgSQL Exceptions](#plpgsql-exceptions)
+  - [Demonstration Screenshots](#demonstration-screenshots)  
+  - [PL/pgSQL Exceptions](#plpgsql-exceptions)
   - [Backup Part-Four](#backup-part-four)
 
 
