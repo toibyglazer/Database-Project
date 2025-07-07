@@ -792,28 +792,28 @@ The file containing all functions can be found here [Functions](./Part_Four/SQL/
 
 Below is a brief explanation of each function:
 
-1. #### `get_all_available_copies()`  
+**1.** `get_all_available_copies()`  
    **Retrieve All Available Copies in the Library**
 
    This function returns all physical copies in the library that are currently available (i.e., not borrowed).  
 It returns a table with details about the book, the copy, language, shelf location, and the condition of the copy.  
 Data is retrieved from multiple tables and filtered to include only copies that are not currently loaned out.
 
-2. #### `check_book_availability(book_id INTEGER)`  
+**2.** `check_book_availability(book_id INTEGER)`  
    **Check Book Availability by Book ID**
 
    This function takes a book ID and checks how many available copies exist in the library.  
    It uses a cursor to return all available copies with details on their location and condition.  
    If the book is not found or no copies are available, appropriate notices are raised.
 
-3. #### `get_book_borrowers(book_id INTEGER)`  
+**3.** `get_book_borrowers(book_id INTEGER)`  
    **Get List of Current Borrowers for a Specific Book**
 
    This function returns a list of all readers who currently have copies of a specific book borrowed and not yet returned.  
    It shows information about the reader, loan and expected return dates, and the number of days overdue if applicable.  
    Exception handling is included for cases when the book is not found or no active loans exist.
 
-4. #### `get_top_selling_books()`  
+**4.** `get_top_selling_books()`  
    **Retrieve Top Ten Best-Selling Books**
 
    This function returns the top ten best-selling books based on the number of copies sold and total revenue.  
@@ -826,7 +826,7 @@ The file containing all procedures can be found here [Procedures](./Part_Four/SQ
 
 Below is a brief explanation of each procedure:
 
-1. #### `proc_borrow_specific_copy(p_reader_id INTEGER, p_library_copy_id INTEGER)`  
+**1.** `proc_borrow_specific_copy(p_reader_id INTEGER, p_library_copy_id INTEGER)`  
    **Borrow a Specific Library Copy**
 
    This procedure allows a reader to borrow a specific library copy, identified by its LibraryCopyID.
@@ -834,7 +834,7 @@ Below is a brief explanation of each procedure:
    If the copy is currently unavailable, an exception is raised.
    Otherwise, a borrow record is created and the copy is linked to that transaction.
 
-2. #### `proc_place_multi_book_order(p_customer_id INTEGER, p_booklanguage_ids INTEGER[], p_quantities INTEGER[])`  
+**2.** `proc_place_multi_book_order(p_customer_id INTEGER, p_booklanguage_ids INTEGER[], p_quantities INTEGER[])`  
    **Place a Multi-Book Order**
 
    This procedure creates a new order for a customer that can include multiple books with specified quantities.  
@@ -850,14 +850,14 @@ The file containing all triggers can be found here [Triggers](./Part_Four/SQL/tr
 
 Below is a brief explanation of each trigger:
 
-1. #### `trg_update_reader_books()` (trigger function)  
+**1.** `trg_update_reader_books()` (trigger function)  
    **Update Reader’s Number of Borrowed Books**
 
    This trigger function automatically increments the `numTakenBooks` field in the `Reader` table whenever a new borrowing entry is inserted.  
    It ensures the count of books currently borrowed by the reader is updated after an insert into the `Borrowed` table.  
    The associated trigger `trg_after_borrow_insert` fires **after insert** on the `Borrowed` table to execute this function.
 
-2. #### `trg_update_inventory_after_order()` (trigger function)  
+**2.** `trg_update_inventory_after_order()` (trigger function)  
    **Update Inventory After New Order Item**
 
    This trigger function updates the bookstore inventory by subtracting the quantity of a newly ordered book from the stock.  
@@ -951,28 +951,31 @@ We requested 12 copies for our order. That was all we wanted to order, and the o
 - In the `OrderItem` and `Orders` tables after the procedure executed.
 - And in the `BookstoreInventory` table after the trigger automatically reduced the stock.  
 
-<!-- עטיפה משותפת עם רוחב קבוע של 300px -->
+<!-- עטיפה משותפת ברוחב קבוע ומרכוז -->
 <div style="width: 1000px; margin: auto;">
 
-  <!-- התמונה העליונה, תופסת את כל הרוחב -->
+  <!-- תמונה עליונה אחת -->
   <img src="./Part_Four/Screenshots/RunningSecondMainProgram/successfulRun.png" alt="Successful order run" style="width: 100%; margin-bottom: 10px;">
 
-  <!-- שתי התמונות יחד, כל אחת חצי מהרוחב -->
-  <div style="display: flex; gap: 5px;">
-    <img src="./Part_Four/Screenshots/RunningSecondMainProgram/ordersAfterRunning.png" alt="Orders table after run" style="width: 70%;">
-    <img src="./Part_Four/Screenshots/RunningSecondMainProgram/orderItemAfterExecution.png" alt="OrderItem table after run" style="width: 30%;">
+  <!-- שתי תמונות בשורה אחת, עם יחס 70/30 -->
+  <div style="display: flex; flex-wrap: nowrap; gap: 10px;">
+    <img src="./Part_Four/Screenshots/RunningSecondMainProgram/ordersAfterRunning.png" alt="Orders table after run" style="width: 70%; height: auto;">
+    <img src="./Part_Four/Screenshots/RunningSecondMainProgram/orderItemAfterExecution.png" alt="OrderItem table after run" style="width: 30%; height: auto;">
   </div>
 
 </div>
 
+
 ### PL/pgSQL Exceptions
 1. **check_book_availability - Book not found in library**  
-Explanation: Ensures the book exists before returning available copies.  
+Explanation: Ensures the book exists before returning available copies.    
+
     ```plpgsql
     RAISE EXCEPTION 'Book with ID % not found in library', book_id;
    ```
 2. **check_book_availability - No copies available**  
-Explanation: Indicates no available copies because all are currently borrowed, returns no results.  
+Explanation: Indicates no available copies because all are currently borrowed, returns no results.
+
      ```plpgsql
       RAISE NOTICE 'No copies available for book ID % - all copies are currently borrowed', book_id;
       RETURN;
