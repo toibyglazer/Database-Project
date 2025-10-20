@@ -265,3 +265,217 @@ EXCEPTION
         RAISE;
 END;
 $$;
+CREATE OR REPLACE FUNCTION get_book_copy_count(book_id INTEGER DEFAULT NULL)
+RETURNS TABLE (
+    bookid INTEGER,
+    copy_count INTEGER
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    IF book_id IS NULL THEN
+        RETURN QUERY
+        SELECT b.bookid, COUNT(lc.librarycopyid)::integer AS copy_count
+        FROM book b
+        LEFT JOIN booklanguage bl ON b.bookid = bl.bookid
+        LEFT JOIN librarycopy lc ON bl.booklanguageid = lc.booklanguageid
+        GROUP BY b.bookid
+        ORDER BY b.bookid;
+    ELSE
+        RETURN QUERY
+        SELECT b.bookid, COUNT(lc.librarycopyid)::integer AS copy_count
+        FROM book b
+        LEFT JOIN booklanguage bl ON b.bookid = bl.bookid
+        LEFT JOIN librarycopy lc ON bl.booklanguageid = lc.booklanguageid
+        WHERE b.bookid = book_id
+        GROUP BY b.bookid
+        ORDER BY b.bookid;
+    END IF;
+END;
+$$;
+
+CREATE OR REPLACE FUNCTION get_available_copies(book_id INTEGER DEFAULT NULL)
+RETURNS TABLE (
+    bookid INTEGER,
+    title VARCHAR,
+    librarycopyid INTEGER,
+    languagename VARCHAR,
+    copycondition copy_condition_enum,
+    shelfnumber INTEGER,
+    floor INTEGER,
+    rownum INTEGER
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    IF book_id IS NULL THEN
+        RETURN QUERY
+        SELECT 
+            b.bookid,
+            b.title,
+            lc.librarycopyid,
+            l.languagename,
+            lc.copycondition,
+            sl.shelfnumber,
+            sl.floor,
+            sl.rownum
+        FROM librarycopy lc
+        JOIN booklanguage bl ON lc.booklanguageid = bl.booklanguageid
+        JOIN book b ON bl.bookid = b.bookid
+        JOIN language l ON bl.languageid = l.languageid
+        LEFT JOIN shelflocation sl ON lc.shelflocationid = sl.shelflocationid
+        WHERE lc.librarycopyid NOT IN (
+            SELECT br.librarycopyid
+            FROM borrowed br
+            JOIN borrow bo ON br.borrownumber = bo.borrownumber
+            WHERE bo.wasreturned = FALSE
+        );
+    ELSE
+        RETURN QUERY
+        SELECT 
+            b.bookid,
+            b.title,
+            lc.librarycopyid,
+            l.languagename,
+            lc.copycondition,
+            sl.shelfnumber,
+            sl.floor,
+            sl.rownum
+        FROM librarycopy lc
+        JOIN booklanguage bl ON lc.booklanguageid = bl.booklanguageid
+        JOIN book b ON bl.bookid = b.bookid
+        JOIN language l ON bl.languageid = l.languageid
+        LEFT JOIN shelflocation sl ON lc.shelflocationid = sl.shelflocationid
+        WHERE lc.librarycopyid NOT IN (
+            SELECT br.librarycopyid
+            FROM borrowed br
+            JOIN borrow bo ON br.borrownumber = bo.borrownumber
+            WHERE bo.wasreturned = FALSE
+        )
+        AND b.bookid = book_id;
+    END IF;
+END;
+$$;
+
+CREATE OR REPLACE FUNCTION get_current_borrowers(book_id INTEGER DEFAULT NULL)
+RETURNS TABLE (
+    borrownumber INTEGER,
+    readerid INTEGER,
+    readerfullname VARCHAR(200),
+    email VARCHAR(255),
+    phonenumber VARCHAR(20),
+    borrowdate DATE,
+    expectedreturndate DATE,
+    daysoverdue INTEGER
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    IF book_id IS NULL THEN
+        RETURN QUERY
+        SELECT
+            bo.borrownumber,
+            r.readerid,
+            (p.firstname || ' ' || p.lastname)::varchar AS readerfullname,
+            p.email,
+            p.phonenumber,
+            bo.borrowdate,
+            (bo.borrowdate + INTERVAL '30 days')::DATE AS expectedreturndate,
+            CASE
+                WHEN bo.borrowdate + INTERVAL '30 days' < CURRENT_DATE
+                THEN EXTRACT(DAY FROM CURRENT_DATE - (bo.borrowdate + INTERVAL '30 days'))::INTEGER
+                ELSE NULL
+            END AS daysoverdue
+        FROM borrow bo
+        JOIN reader r ON bo.readerid = r.readerid
+        JOIN person p ON r.readerid = p.id
+        WHERE bo.wasreturned = FALSE
+        ORDER BY bo.borrownumber;
+    ELSE
+        RETURN QUERY
+        SELECT
+            bo.borrownumber,
+            r.readerid,
+            (p.firstname || ' ' || p.lastname)::varchar AS readerfullname,
+            p.email,
+            p.phonenumber,
+            bo.borrowdate,
+            (bo.borrowdate + INTERVAL '30 days')::DATE AS expectedreturndate,
+            CASE
+                WHEN bo.borrowdate + INTERVAL '30 days' < CURRENT_DATE
+                THEN EXTRACT(DAY FROM CURRENT_DATE - (bo.borrowdate + INTERVAL '30 days'))::INTEGER
+                ELSE NULL
+            END AS daysoverdue
+        FROM borrow bo
+        JOIN reader r ON bo.readerid = r.readerid
+        JOIN person p ON r.readerid = p.id
+        JOIN borrowed br ON bo.borrownumber = br.borrownumber
+        JOIN librarycopy lc ON br.librarycopyid = lc.librarycopyid
+        JOIN booklanguage bl ON lc.booklanguageid = bl.booklanguageid
+        WHERE bo.wasreturned = FALSE
+          AND bl.bookid = book_id
+        ORDER BY bo.borrownumber;
+    END IF;
+END;
+$$;
+
+-- פונקציית זמינות עותקים לתוכנית הראשית הראשונה
+CREATE OR REPLACE FUNCTION public.get_books_with_available_copies()
+RETURNS TABLE (
+    book_id INTEGER,
+    title TEXT,
+    available_copies INTEGER
+)
+LANGUAGE sql
+AS $$
+SELECT 
+    bl.BookID AS book_id,
+    MIN(b.Title) AS title,
+    COUNT(*) AS available_copies
+FROM LibraryCopy lc
+JOIN BookLanguage bl ON bl.BookLanguageID = lc.BookLanguageID
+JOIN Book b ON b.BookID = bl.BookID
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM Borrowed br
+    JOIN Borrow bo ON bo.BorrowNumber = br.BorrowNumber
+    WHERE br.LibraryCopyID = lc.LibraryCopyID
+      AND bo.WasReturned = FALSE
+)
+GROUP BY bl.BookID
+ORDER BY title;
+$$;
+
+-- פונקציית זמינות לתוכנית הראשית הראשונה
+CREATE OR REPLACE FUNCTION public.check_book_availability(p_book_id INTEGER)
+RETURNS TABLE (
+    library_copy_id INTEGER,
+    language_name TEXT,
+    copy_condition TEXT,
+    shelf_number INTEGER,
+    floor INTEGER,
+    row_num INTEGER
+)
+LANGUAGE sql
+AS $$
+SELECT 
+    lc.LibraryCopyID AS library_copy_id,
+    l.LanguageName   AS language_name,
+    lc.CopyCondition AS copy_condition,
+    sl.ShelfNumber   AS shelf_number,
+    sl.Floor         AS floor,
+    sl.RowNum        AS row_num
+FROM LibraryCopy lc
+JOIN BookLanguage bl ON bl.BookLanguageID = lc.BookLanguageID
+JOIN Language l ON l.LanguageID = bl.LanguageID
+LEFT JOIN ShelfLocation sl ON sl.ShelfLocationID = lc.ShelfLocationID
+WHERE bl.BookID = p_book_id
+  AND NOT EXISTS (
+      SELECT 1
+      FROM Borrowed br
+      JOIN Borrow bo ON bo.BorrowNumber = br.BorrowNumber
+      WHERE br.LibraryCopyID = lc.LibraryCopyID
+        AND bo.WasReturned = FALSE
+  )
+ORDER BY sl.Floor, sl.ShelfNumber, sl.RowNum, lc.LibraryCopyID;
+$$;
