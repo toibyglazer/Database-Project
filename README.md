@@ -36,7 +36,6 @@ Database Project By Toiby Glazer 326484524 | Semester B, Spring 2025
   - [PL/pgSQL Exceptions](#plpgsql-exceptions)
   - [Backup Part-Four](#backup-part-four)
 - [Part Five: Graphical User Interface](#part-five-graphical-user-interface)
-  - [Introduction](#introduction-1)
   - [Technology Stack](#technology-stack)
   - [Application Architecture](#application-architecture)
   - [Main Menu Layout](#main-menu-layout)
@@ -1085,3 +1084,100 @@ This backup captures all developed logic, code, and structural changes applied d
 **Data Backup File** [View Backup File](./Part_Four/Backup/backup4.backup)
 
 This backup reflects the complete and updated version of the extended unified system after all logical and structural enhancements of Part Four.
+
+## Part Five: Graphical User Interface
+
+In this final stage, a desktop graphical user interface was developed to interact directly with the integrated Bookstore/Library database built in Parts One through Four. The application allows a user to browse, create, update and delete records, run reporting queries from Part Two, and trigger the PL/pgSQL functions and procedures written in Part Four — all without writing SQL by hand.
+
+### Technology Stack
+
+- **Language:** Python 3
+- **GUI Framework:** Tkinter (`tkinter`, `tkinter.ttk`) - the standard Python GUI toolkit, chosen for its simplicity and native integration with Python, requiring no external GUI runtime.
+- **Database Driver:** `psycopg2` - connects directly to the PostgreSQL database built in Parts One-Four.
+- **Charts:** `matplotlib`, embedded inside Tkinter windows via `FigureCanvasTkAgg`, used for the statistics dashboards.
+
+### Application Architecture
+
+The code is organized into four parts:
+
+- **`main.py`** - the application's entry point. It builds the main menu window and opens every other screen as a `Toplevel` window on demand.
+- **`config.py`** - holds the PostgreSQL connection settings (host, port, database name, user, password).
+- **`db_manager.py`** - a shared data-access layer. Every CRUD operation and every call to a Part Four function/procedure is wrapped here in a dedicated Python function, so the screen files never contain raw SQL for basic operations.
+- **`screens/`** - a package containing one module per database table's CRUD screen (`reader_gui.py`, `book_gui.py`, `booklanguage_gui.py`, `bookstoreinventory_gui.py`, `borrow_gui.py`, `borrowed_gui.py`, `language_gui.py`, `librarycopy_gui.py`, `orderitem_gui.py`, `orders_gui.py`). Each module defines one class implementing a full Create/Read/Update/Delete screen for its table.
+
+### Main Menu Layout
+
+Launching the application (`python main.py`) opens a single main window, divided into **six labeled category panels** side by side. Each panel is a `LabelFrame` containing buttons; every button opens a dedicated window for that specific action:
+
+1. **CRUD Table Management** ("ניהול טבלאות CRUD")
+2. **Information Functions** ("פונקציות מידע") - includes a nested **Statistics** panel
+3. **Queries**
+4. **Procedures** ("פרוצדורות")
+5. **Main Programs** ("תוכניות ראשיות")
+
+This main window is the required "entry screen" from which every other screen in the system can be reached.
+
+### CRUD Management Screens
+
+Ten buttons, one per table: **Reader, BookstoreInventory, BookLanguage, Language, Book, LibraryCopy, Borrow, Borrowed, Orders, OrderItem** (this satisfies the requirement of at least 3 CRUD-capable tables including a junction table, since `OrderItem` and `Borrowed` both link two other tables together).
+
+Every CRUD screen follows the same consistent pattern:
+- Four **Radiobuttons** to switch mode: Create / Read / Update / Delete.
+- A form with one input field per column; fields are automatically enabled/disabled/read-only depending on the selected mode.
+- A single **Execute** button whose label and behaviour change per mode (e.g. "Add Reader", "Search Reader", "Load for Update" → "Update Reader", "Delete Reader").
+- A results table (`ttk.Treeview`) showing all current rows, with a live row-count label above it.
+- Clicking a row in the table auto-fills the form (for Read/Update).
+- Client-side validation (e.g. phone number format, date format `YYYY-MM-DD`) before sending data to the database.
+- A confirmation dialog before any Delete operation.
+
+### Information Function Screens
+
+Four buttons that call the PL/pgSQL **functions** written in Part Four and display the results in a table, each with a short Hebrew description panel explaining what the function does:
+
+- **"הצג עותקים זמינים בספריה"** (Show available library copies) - optional BookID filter, calls `get_available_copies`.
+- **"הצג השאלות פעילות בספריה"** (Show active borrows) - optional BookID filter, calls `get_current_borrowers`.
+- **"ספירת עותקים לכל ספר"** (Copy count for a book) - takes a BookID, calls `get_book_copy_count`.
+- **"הצג את הספרים הנמכרים ביותר"** (Show top-selling books) - calls `get_top_selling_books`, no input required.
+
+### Statistics Screens
+
+Two analytics dashboards, combining KPI text tiles with `matplotlib` charts embedded in the Tkinter window:
+
+- **"סטטיסטיקות חנות הספרים"** (Bookstore Analytics): total revenue, total orders, average order value, and low-stock item count as KPI tiles; a table of top-selling genres; a pie chart of customer types (Individual vs. Library); a bar chart of the top 5 selling genres.
+- **"סטטיסטיקות הספריה"** (Library Analytics): total borrows, active readers, return rate, and unpaid fines as KPI tiles; a bar chart of the top 5 most-borrowed genres with a color legend; a pie chart comparing overdue vs. on-time borrows.
+
+### Query Screens
+
+Six buttons, each running one of the SELECT queries from Part Two (or a close variant adapted for the integrated schema) directly against the database, displayed with a description panel and a results table:
+
+- **"הצג מלאי נמוך בחנות הספרים"** - books with stock below 5, joined with author/language/genre and total units sold.
+- **"הצג 10 הזמנות אחרונות"** - the 10 most recent orders, with customer, seller, discount, item count, total price and the list of books ordered.
+- **"חיפוש ספרים לפי ז'אנר וגיל"** - a filterable search (genre dropdown + age-group dropdown) showing each book's availability in both the bookstore and the library.
+- **"הצג 10 קנסות אחרונים"** - the 10 most recent fines, with reader, librarian, dates, amount, reason and payment status.
+- **"הצג מלאי בחנות הספרים"** - the full bookstore stock list, sorted by quantity.
+- **"הצג ספרים זמינים בספריה"** - every library copy that is not currently borrowed.
+
+### Procedure Screens
+
+Two guided forms, each calling one of the Part Four **procedures** directly:
+
+- **"השאלת ספר בספריה"** → calls `create_new_borrow(reader_id, librarian_id, copy_ids[])`. The user enters a Reader ID and a Librarian ID (with "הצג קוראים" / "הצג ספרנים" lookup buttons to browse valid IDs), then multi-selects one or more currently-available library copies from a listbox. The form validates that the reader and librarian IDs actually exist before calling the procedure, and displays the database's `RAISE NOTICE` message as a success popup.
+- **"בצע הזמנה בחנות הספרים"** → calls `create_new_order(customer_id, seller_id, booklanguage_ids[], quantities[])`. The user enters a Customer ID (with a "הצג לקוחות" lookup) — the form automatically detects and displays whether this is an **"הזמנת ספריה"** (Library-type) or **"הזמנה פרטית"** (Individual-type) order based on the customer's `CustomerType` — and a Seller ID (with a "הצג מוכרים" lookup). The user then multi-selects books from the in-stock catalog, sets a quantity per book (capped at available stock via a Spinbox), and submits; the database's success notice is shown to the user.
+
+### Main Program Screens
+
+Two end-to-end guided "wizards" that reuse the Part Four functions and procedures to simulate a full real-world flow:
+
+- **"ביצוע השאלה בספריה"** (Library borrow wizard): live-validates a Reader ID, lets the user search/filter a book catalog with available-copy counts, shows the specific available copies of the selected book (shelf location, condition, language), and performs the borrow with a single click (also supports double-click and the `Ctrl+Enter` / `Ctrl+B` keyboard shortcuts). If no copies are available, it automatically shows the book's current borrowers instead.
+- **"ביצוע הזמנה בחנות הספרים"** (Bookstore order wizard): opens by showing the current Top-10 best-selling books, live-validates a Customer ID and displays their discount percentage, lets the user search the in-stock catalog and add items to a floating shopping-cart window (with quantity +/- controls and a running total that already applies the customer's discount), and finally shows a checkout summary before placing the order.
+
+Together, the CRUD, Query, Procedure and Main Program screens add up to well over the minimum of 5 required screens.
+
+### How to Run the Application
+
+Full setup and run instructions are provided in a separate file: [RunInstructions.md](Part_Five/RunInstructions.md).
+
+In short: make sure the PostgreSQL database from Part Four is running and reachable, install the Python dependencies (`psycopg2-binary`, `matplotlib`, `numpy`, `pillow`), then run:
+
+```bash
+python main.py
