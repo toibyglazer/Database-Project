@@ -1182,6 +1182,13 @@ Two analytics dashboards, combining KPI text tiles with `matplotlib` charts embe
 
    Displays total borrows, active readers, return rate, and unpaid fines as KPI tiles, a bar chart of the top 5 most-borrowed genres with a color legend, and a pie chart comparing overdue vs. on-time borrows.
 
+<div align="center">
+     <p float="left">
+       <img src="Part_Five/Screenshots/Bookstore_Statistics.png" width="45%" />
+       <img src="Part_Five/Screenshots/Library_statistics.png" width="45%" />
+     </p>
+   </div>
+   
 ### Query Screens
 
 Six buttons, each running one of the SELECT queries from Part Two (or a close variant adapted for the integrated schema) directly against the database, each displayed with a description panel and a results table.
