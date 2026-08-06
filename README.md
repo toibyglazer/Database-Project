@@ -35,6 +35,19 @@ Database Project By Toiby Glazer 326484524 | Semester B, Spring 2025
   - [Demonstration Screenshots](#demonstration-screenshots)  
   - [PL/pgSQL Exceptions](#plpgsql-exceptions)
   - [Backup Part-Four](#backup-part-four)
+- [Part Five: Graphical User Interface](#part-five-graphical-user-interface)
+  - [Introduction](#introduction-1)
+  - [Technology Stack](#technology-stack)
+  - [Application Architecture](#application-architecture)
+  - [Main Menu Layout](#main-menu-layout)
+  - [CRUD Management Screens](#crud-management-screens)
+  - [Information Function Screens](#information-function-screens)
+  - [Statistics Screens](#statistics-screens)
+  - [Query Screens](#query-screens)
+  - [Procedure Screens](#procedure-screens)
+  - [Main Program Screens](#main-program-screens)
+  - [How to Run the Application](#how-to-run-the-application)
+  - [Screenshots](#screenshots)
 
 
 ## Part One: Design and Build the Database
