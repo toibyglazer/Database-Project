@@ -1154,61 +1154,61 @@ You can view the underlying functions here: [functions.sql](Part_Four/SQL/functi
 
 Four buttons call the PL/pgSQL **functions** written in Part Four and display the results in a table, each screen including a short description panel of what the function does.
 
-- **Show Available Library Copies**
+1. **Show Available Library Copies**
 
-  Displays every physical copy currently available in the library (not currently borrowed), with an optional `BookID` filter. Calls the `get_available_copies` function and shows book title, language, copy condition, and shelf location.
+   Displays every physical copy currently available in the library (not currently borrowed), with an optional `BookID` filter. Calls the `get_available_copies` function and shows book title, language, copy condition, and shelf location.
 
-- **Show Active Borrows**
+2. **Show Active Borrows**
 
-  Displays every borrow that has not yet been returned, with an optional `BookID` filter. Calls the `get_current_borrowers` function and shows the reader's details, borrow date, expected return date, and days overdue.
+   Displays every borrow that has not yet been returned, with an optional `BookID` filter. Calls the `get_current_borrowers` function and shows the reader's details, borrow date, expected return date, and days overdue.
 
-- **Copy Count for a Book**
+3. **Copy Count for a Book**
 
-  Displays how many physical copies of a specific book exist in the library, regardless of language. Takes a `BookID` and calls the `get_book_copy_count` function.
+   Displays how many physical copies of a specific book exist in the library, regardless of language. Takes a `BookID` and calls the `get_book_copy_count` function.
 
-- **Show Top-Selling Books**
+4. **Show Top-Selling Books**
 
-  Displays the 10 best-selling books based on copies sold and total revenue, with no input required. Calls the `get_top_selling_books` function.
+   Displays the 10 best-selling books based on copies sold and total revenue, with no input required. Calls the `get_top_selling_books` function.
 
 ### Statistics Screens
 
 Two analytics dashboards, combining KPI text tiles with `matplotlib` charts embedded directly in the Tkinter window.
 
-- **Bookstore Analytics**
+1. **Bookstore Analytics**
 
-  Displays total revenue, total orders, average order value, and low-stock item count as KPI tiles, a table of top-selling genres, a pie chart of customer types (`Individual` vs. `Library`), and a bar chart of the top 5 selling genres.
+   Displays total revenue, total orders, average order value, and low-stock item count as KPI tiles, a table of top-selling genres, a pie chart of customer types (`Individual` vs. `Library`), and a bar chart of the top 5 selling genres.
 
-- **Library Analytics**
+2. **Library Analytics**
 
-  Displays total borrows, active readers, return rate, and unpaid fines as KPI tiles, a bar chart of the top 5 most-borrowed genres with a color legend, and a pie chart comparing overdue vs. on-time borrows.
+   Displays total borrows, active readers, return rate, and unpaid fines as KPI tiles, a bar chart of the top 5 most-borrowed genres with a color legend, and a pie chart comparing overdue vs. on-time borrows.
 
 ### Query Screens
 
 Six buttons, each running one of the SELECT queries from Part Two (or a close variant adapted for the integrated schema) directly against the database, each displayed with a description panel and a results table.
 
-- **Low Stock in the Bookstore**
+1. **Low Stock in the Bookstore**
 
-  Displays books with stock quantity below 5, joined with author, language, and genre, along with total units sold.
+   Displays books with stock quantity below 5, joined with author, language, and genre, along with total units sold.
 
-- **Last 10 Orders**
+2. **Last 10 Orders**
 
-  Displays the 10 most recent orders, including customer, seller, discount, item count, total price, and the list of books ordered.
+   Displays the 10 most recent orders, including customer, seller, discount, item count, total price, and the list of books ordered.
 
-- **Search Books by Genre and Age Group**
+3. **Search Books by Genre and Age Group**
 
-  A filterable search (genre dropdown and age-group dropdown) showing each book's availability in both the bookstore and the library.
+   A filterable search (genre dropdown and age-group dropdown) showing each book's availability in both the bookstore and the library.
 
-- **Last 10 Fines**
+4. **Last 10 Fines**
 
-  Displays the 10 most recent fines, including reader, librarian, dates, amount, reason, and payment status.
+   Displays the 10 most recent fines, including reader, librarian, dates, amount, reason, and payment status.
 
-- **Bookstore Stock**
+5. **Bookstore Stock**
 
-  Displays the full bookstore stock list, sorted by quantity.
+   Displays the full bookstore stock list, sorted by quantity.
 
-- **Available Library Books**
+6. **Available Library Books**
 
-  Displays every library copy that is not currently borrowed.
+   Displays every library copy that is not currently borrowed.
 
 ### Procedure Screens
 
@@ -1216,25 +1216,25 @@ You can view the underlying procedures here: [procedures.sql](Part_Four/SQL/proc
 
 Two guided forms, each calling one of the Part Four **procedures** directly.
 
-- **Borrow a Book from the Library**
+1. **Borrow a Book from the Library**
 
-  Calls `create_new_borrow(reader_id, librarian_id, copy_ids[])`. The user enters a Reader ID and a Librarian ID (each with a lookup button to browse valid IDs), then multi-selects one or more currently-available library copies from a list box. The form validates that the reader and librarian IDs actually exist before calling the procedure, and displays the database's `RAISE NOTICE` message as a success popup.
+   Calls `create_new_borrow(reader_id, librarian_id, copy_ids[])`. The user enters a Reader ID and a Librarian ID (each with a lookup button to browse valid IDs), then multi-selects one or more currently-available library copies from a list box. The form validates that the reader and librarian IDs actually exist before calling the procedure, and displays the database's `RAISE NOTICE` message as a success popup.
 
-- **Place an Order in the Bookstore**
+2. **Place an Order in the Bookstore**
 
-  Calls `create_new_order(customer_id, seller_id, booklanguage_ids[], quantities[])`. The user enters a Customer ID (with a lookup button); the form automatically detects and displays whether this is a **Library-type** or an **Individual-type** order, based on the customer's `CustomerType`. The user also enters a Seller ID (with a lookup button), then multi-selects books from the in-stock catalog and sets a quantity per book, capped at the available stock via a spinbox. On submit, the database's success notice is shown to the user.
+   Calls `create_new_order(customer_id, seller_id, booklanguage_ids[], quantities[])`. The user enters a Customer ID (with a lookup button); the form automatically detects and displays whether this is a **Library-type** or an **Individual-type** order, based on the customer's `CustomerType`. The user also enters a Seller ID (with a lookup button), then multi-selects books from the in-stock catalog and sets a quantity per book, capped at the available stock via a spinbox. On submit, the database's success notice is shown to the user.
 
 ### Main Program Screens
 
 Two end-to-end guided "wizards" that reuse the Part Four functions and procedures to simulate a full real-world flow.
 
-- **Library Borrow Wizard**
+1. **Library Borrow Wizard**
 
-  Live-validates a Reader ID, lets the user search and filter a book catalog with available-copy counts, shows the specific available copies of the selected book (shelf location, condition, language), and performs the borrow with a single click - also supporting double-click and the `Ctrl+Enter` / `Ctrl+B` keyboard shortcuts. If no copies are available, the screen automatically shows the book's current borrowers instead.
+   Live-validates a Reader ID, lets the user search and filter a book catalog with available-copy counts, shows the specific available copies of the selected book (shelf location, condition, language), and performs the borrow with a single click - also supporting double-click and the `Ctrl+Enter` / `Ctrl+B` keyboard shortcuts. If no copies are available, the screen automatically shows the book's current borrowers instead.
 
-- **Bookstore Order Wizard**
+2. **Bookstore Order Wizard**
 
-  Opens by showing the current top 10 best-selling books, live-validates a Customer ID and displays their discount percentage, and lets the user search the in-stock catalog and add items to a floating shopping-cart window, with quantity +/- controls and a running total that already applies the customer's discount. A checkout summary is shown before the order is finally placed.
+   Opens by showing the current top 10 best-selling books, live-validates a Customer ID and displays their discount percentage, and lets the user search the in-stock catalog and add items to a floating shopping-cart window, with quantity +/- controls and a running total that already applies the customer's discount. A checkout summary is shown before the order is finally placed.
 
 Together, the CRUD, Query, Procedure, and Main Program screens add up to well over the minimum of 5 required screens.
 
