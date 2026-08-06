@@ -46,7 +46,6 @@ Database Project By Toiby Glazer 326484524 | Semester B, Spring 2025
   - [Procedure Screens](#procedure-screens)
   - [Main Program Screens](#main-program-screens)
   - [How to Run the Application](#how-to-run-the-application)
-  - [Screenshots](#screenshots)
 
 
 ## Part One: Design and Build the Database
@@ -1147,6 +1146,11 @@ Every CRUD screen follows the same consistent pattern:
 5. Clicking a row in the results table automatically fills the form (used in Read and Update modes).
 6. Client-side validation (for example, phone number format, or date format `YYYY-MM-DD`) runs before any data is sent to the database.
 7. A confirmation dialog is shown before any Delete operation is executed.
+
+
+<div align="center">
+  <img src="Part_Five/Screenshots/Home_page.png" width="900" />
+</div>
 
 ### Information Function Screens
 
