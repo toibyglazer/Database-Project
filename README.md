@@ -1087,6 +1087,8 @@ This backup reflects the complete and updated version of the extended unified sy
 
 ## Part Five: Graphical User Interface
 
+### Introduction
+
 In this final stage, a desktop graphical user interface was developed to interact directly with the integrated Bookstore/Library database built in Parts One through Four. The application allows a user to browse, create, update and delete records, run reporting queries from Part Two, and trigger the PL/pgSQL functions and procedures written in Part Four — all without writing SQL by hand.
 
 ### Technology Stack
@@ -1107,71 +1109,134 @@ The code is organized into four parts:
 
 ### Main Menu Layout
 
-Launching the application (`python main.py`) opens a single main window, divided into **six labeled category panels** side by side. Each panel is a `LabelFrame` containing buttons; every button opens a dedicated window for that specific action:
+Launching the application (`python main.py`) opens a single main window, divided into **six labeled category panels** arranged side by side. Each panel is a `LabelFrame` containing buttons, and every button opens a dedicated window for that specific action:
 
-1. **CRUD Table Management** ("ניהול טבלאות CRUD")
-2. **Information Functions** ("פונקציות מידע") - includes a nested **Statistics** panel
+1. **CRUD Table Management**
+2. **Information Functions** - includes a nested **Statistics** panel
 3. **Queries**
-4. **Procedures** ("פרוצדורות")
-5. **Main Programs** ("תוכניות ראשיות")
+4. **Procedures**
+5. **Main Programs**
 
-This main window is the required "entry screen" from which every other screen in the system can be reached.
+This main window is the required entry screen from which every other screen in the system can be reached. Note that while this documentation is written in English, the on-screen labels and messages inside the application itself are written in Hebrew.
 
 ### CRUD Management Screens
 
-Ten buttons, one per table: **Reader, BookstoreInventory, BookLanguage, Language, Book, LibraryCopy, Borrow, Borrowed, Orders, OrderItem** (this satisfies the requirement of at least 3 CRUD-capable tables including a junction table, since `OrderItem` and `Borrowed` both link two other tables together).
+You can view the code for these screens here: [screens/](Part_Five/Code/screens)
+
+Ten buttons, one per table, each opening a full Create/Read/Update/Delete screen:
+
+- [reader_gui.py](Part_Five/Code/screens/reader_gui.py) - manages the `Reader` table
+- [bookstoreinventory_gui.py](Part_Five/Code/screens/bookstoreinventory_gui.py) - manages the `BookstoreInventory` table
+- [booklanguage_gui.py](Part_Five/Code/screens/booklanguage_gui.py) - manages the `BookLanguage` table
+- [language_gui.py](Part_Five/Code/screens/language_gui.py) - manages the `Language` table
+- [book_gui.py](Part_Five/Code/screens/book_gui.py) - manages the `Book` table
+- [librarycopy_gui.py](Part_Five/Code/screens/librarycopy_gui.py) - manages the `LibraryCopy` table
+- [borrow_gui.py](Part_Five/Code/screens/borrow_gui.py) - manages the `Borrow` table
+- [borrowed_gui.py](Part_Five/Code/screens/borrowed_gui.py) - manages the `Borrowed` junction table
+- [orders_gui.py](Part_Five/Code/screens/orders_gui.py) - manages the `Orders` table
+- [orderitem_gui.py](Part_Five/Code/screens/orderitem_gui.py) - manages the `OrderItem` junction table
+
+This satisfies the requirement of at least 3 CRUD-capable tables including a junction table, since both `OrderItem` and `Borrowed` link two other tables together.
 
 Every CRUD screen follows the same consistent pattern:
-- Four **Radiobuttons** to switch mode: Create / Read / Update / Delete.
-- A form with one input field per column; fields are automatically enabled/disabled/read-only depending on the selected mode.
-- A single **Execute** button whose label and behaviour change per mode (e.g. "Add Reader", "Search Reader", "Load for Update" → "Update Reader", "Delete Reader").
-- A results table (`ttk.Treeview`) showing all current rows, with a live row-count label above it.
-- Clicking a row in the table auto-fills the form (for Read/Update).
-- Client-side validation (e.g. phone number format, date format `YYYY-MM-DD`) before sending data to the database.
-- A confirmation dialog before any Delete operation.
+
+1. Four radio buttons let the user switch mode: **Create**, **Read**, **Update**, or **Delete**.
+2. A form with one input field per column is shown; fields are automatically enabled, disabled, or set to read-only depending on the selected mode.
+3. A single **Execute** button changes its label and behavior per mode (for example, "Add Reader", "Search Reader", "Load for Update" which then becomes "Update Reader", or "Delete Reader").
+4. A results table (`ttk.Treeview`) lists all current rows, with a live row-count label above it.
+5. Clicking a row in the results table automatically fills the form (used in Read and Update modes).
+6. Client-side validation (for example, phone number format, or date format `YYYY-MM-DD`) runs before any data is sent to the database.
+7. A confirmation dialog is shown before any Delete operation is executed.
 
 ### Information Function Screens
 
-Four buttons that call the PL/pgSQL **functions** written in Part Four and display the results in a table, each with a short Hebrew description panel explaining what the function does:
+You can view the underlying functions here: [functions.sql](Part_Four/SQL/functions.sql)
 
-- **"הצג עותקים זמינים בספריה"** (Show available library copies) - optional BookID filter, calls `get_available_copies`.
-- **"הצג השאלות פעילות בספריה"** (Show active borrows) - optional BookID filter, calls `get_current_borrowers`.
-- **"ספירת עותקים לכל ספר"** (Copy count for a book) - takes a BookID, calls `get_book_copy_count`.
-- **"הצג את הספרים הנמכרים ביותר"** (Show top-selling books) - calls `get_top_selling_books`, no input required.
+Four buttons call the PL/pgSQL **functions** written in Part Four and display the results in a table, each screen including a short description panel of what the function does.
+
+- **Show Available Library Copies**
+
+  Displays every physical copy currently available in the library (not currently borrowed), with an optional `BookID` filter. Calls the `get_available_copies` function and shows book title, language, copy condition, and shelf location.
+
+- **Show Active Borrows**
+
+  Displays every borrow that has not yet been returned, with an optional `BookID` filter. Calls the `get_current_borrowers` function and shows the reader's details, borrow date, expected return date, and days overdue.
+
+- **Copy Count for a Book**
+
+  Displays how many physical copies of a specific book exist in the library, regardless of language. Takes a `BookID` and calls the `get_book_copy_count` function.
+
+- **Show Top-Selling Books**
+
+  Displays the 10 best-selling books based on copies sold and total revenue, with no input required. Calls the `get_top_selling_books` function.
 
 ### Statistics Screens
 
-Two analytics dashboards, combining KPI text tiles with `matplotlib` charts embedded in the Tkinter window:
+Two analytics dashboards, combining KPI text tiles with `matplotlib` charts embedded directly in the Tkinter window.
 
-- **"סטטיסטיקות חנות הספרים"** (Bookstore Analytics): total revenue, total orders, average order value, and low-stock item count as KPI tiles; a table of top-selling genres; a pie chart of customer types (Individual vs. Library); a bar chart of the top 5 selling genres.
-- **"סטטיסטיקות הספריה"** (Library Analytics): total borrows, active readers, return rate, and unpaid fines as KPI tiles; a bar chart of the top 5 most-borrowed genres with a color legend; a pie chart comparing overdue vs. on-time borrows.
+- **Bookstore Analytics**
+
+  Displays total revenue, total orders, average order value, and low-stock item count as KPI tiles, a table of top-selling genres, a pie chart of customer types (`Individual` vs. `Library`), and a bar chart of the top 5 selling genres.
+
+- **Library Analytics**
+
+  Displays total borrows, active readers, return rate, and unpaid fines as KPI tiles, a bar chart of the top 5 most-borrowed genres with a color legend, and a pie chart comparing overdue vs. on-time borrows.
 
 ### Query Screens
 
-Six buttons, each running one of the SELECT queries from Part Two (or a close variant adapted for the integrated schema) directly against the database, displayed with a description panel and a results table:
+Six buttons, each running one of the SELECT queries from Part Two (or a close variant adapted for the integrated schema) directly against the database, each displayed with a description panel and a results table.
 
-- **"הצג מלאי נמוך בחנות הספרים"** - books with stock below 5, joined with author/language/genre and total units sold.
-- **"הצג 10 הזמנות אחרונות"** - the 10 most recent orders, with customer, seller, discount, item count, total price and the list of books ordered.
-- **"חיפוש ספרים לפי ז'אנר וגיל"** - a filterable search (genre dropdown + age-group dropdown) showing each book's availability in both the bookstore and the library.
-- **"הצג 10 קנסות אחרונים"** - the 10 most recent fines, with reader, librarian, dates, amount, reason and payment status.
-- **"הצג מלאי בחנות הספרים"** - the full bookstore stock list, sorted by quantity.
-- **"הצג ספרים זמינים בספריה"** - every library copy that is not currently borrowed.
+- **Low Stock in the Bookstore**
+
+  Displays books with stock quantity below 5, joined with author, language, and genre, along with total units sold.
+
+- **Last 10 Orders**
+
+  Displays the 10 most recent orders, including customer, seller, discount, item count, total price, and the list of books ordered.
+
+- **Search Books by Genre and Age Group**
+
+  A filterable search (genre dropdown and age-group dropdown) showing each book's availability in both the bookstore and the library.
+
+- **Last 10 Fines**
+
+  Displays the 10 most recent fines, including reader, librarian, dates, amount, reason, and payment status.
+
+- **Bookstore Stock**
+
+  Displays the full bookstore stock list, sorted by quantity.
+
+- **Available Library Books**
+
+  Displays every library copy that is not currently borrowed.
 
 ### Procedure Screens
 
-Two guided forms, each calling one of the Part Four **procedures** directly:
+You can view the underlying procedures here: [procedures.sql](Part_Four/SQL/procedures.sql)
 
-- **"השאלת ספר בספריה"** → calls `create_new_borrow(reader_id, librarian_id, copy_ids[])`. The user enters a Reader ID and a Librarian ID (with "הצג קוראים" / "הצג ספרנים" lookup buttons to browse valid IDs), then multi-selects one or more currently-available library copies from a listbox. The form validates that the reader and librarian IDs actually exist before calling the procedure, and displays the database's `RAISE NOTICE` message as a success popup.
-- **"בצע הזמנה בחנות הספרים"** → calls `create_new_order(customer_id, seller_id, booklanguage_ids[], quantities[])`. The user enters a Customer ID (with a "הצג לקוחות" lookup) — the form automatically detects and displays whether this is an **"הזמנת ספריה"** (Library-type) or **"הזמנה פרטית"** (Individual-type) order based on the customer's `CustomerType` — and a Seller ID (with a "הצג מוכרים" lookup). The user then multi-selects books from the in-stock catalog, sets a quantity per book (capped at available stock via a Spinbox), and submits; the database's success notice is shown to the user.
+Two guided forms, each calling one of the Part Four **procedures** directly.
+
+- **Borrow a Book from the Library**
+
+  Calls `create_new_borrow(reader_id, librarian_id, copy_ids[])`. The user enters a Reader ID and a Librarian ID (each with a lookup button to browse valid IDs), then multi-selects one or more currently-available library copies from a list box. The form validates that the reader and librarian IDs actually exist before calling the procedure, and displays the database's `RAISE NOTICE` message as a success popup.
+
+- **Place an Order in the Bookstore**
+
+  Calls `create_new_order(customer_id, seller_id, booklanguage_ids[], quantities[])`. The user enters a Customer ID (with a lookup button); the form automatically detects and displays whether this is a **Library-type** or an **Individual-type** order, based on the customer's `CustomerType`. The user also enters a Seller ID (with a lookup button), then multi-selects books from the in-stock catalog and sets a quantity per book, capped at the available stock via a spinbox. On submit, the database's success notice is shown to the user.
 
 ### Main Program Screens
 
-Two end-to-end guided "wizards" that reuse the Part Four functions and procedures to simulate a full real-world flow:
+Two end-to-end guided "wizards" that reuse the Part Four functions and procedures to simulate a full real-world flow.
 
-- **"ביצוע השאלה בספריה"** (Library borrow wizard): live-validates a Reader ID, lets the user search/filter a book catalog with available-copy counts, shows the specific available copies of the selected book (shelf location, condition, language), and performs the borrow with a single click (also supports double-click and the `Ctrl+Enter` / `Ctrl+B` keyboard shortcuts). If no copies are available, it automatically shows the book's current borrowers instead.
-- **"ביצוע הזמנה בחנות הספרים"** (Bookstore order wizard): opens by showing the current Top-10 best-selling books, live-validates a Customer ID and displays their discount percentage, lets the user search the in-stock catalog and add items to a floating shopping-cart window (with quantity +/- controls and a running total that already applies the customer's discount), and finally shows a checkout summary before placing the order.
+- **Library Borrow Wizard**
 
-Together, the CRUD, Query, Procedure and Main Program screens add up to well over the minimum of 5 required screens.
+  Live-validates a Reader ID, lets the user search and filter a book catalog with available-copy counts, shows the specific available copies of the selected book (shelf location, condition, language), and performs the borrow with a single click - also supporting double-click and the `Ctrl+Enter` / `Ctrl+B` keyboard shortcuts. If no copies are available, the screen automatically shows the book's current borrowers instead.
+
+- **Bookstore Order Wizard**
+
+  Opens by showing the current top 10 best-selling books, live-validates a Customer ID and displays their discount percentage, and lets the user search the in-stock catalog and add items to a floating shopping-cart window, with quantity +/- controls and a running total that already applies the customer's discount. A checkout summary is shown before the order is finally placed.
+
+Together, the CRUD, Query, Procedure, and Main Program screens add up to well over the minimum of 5 required screens.
 
 ### How to Run the Application
 
